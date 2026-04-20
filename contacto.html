@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sapienty</title>
+    <link rel="icon" type="image/webp" href="Logo1.webp">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header-dark">
+        <a href="index.html" class="logo">
+            <img src="cropped-Logo.webp" alt="Logo Sapienty">
+        </a>
+        
+        <nav class="nav-links">
+            <a href="#nosotros">NOSOTROS</a>
+            <a href="#blog">BLOG</a>
+            <a href="planes.html">PLANES</a>
+            <a href="contacto.html">CONTACTO</a>
+        </nav>
+        
+        <div class="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <main>
+        <section id="contacto" class="section contacto-section">
+            <div class="contacto-container">
+                <div class="contacto-header">
+                    <h2>Nos hará muy felices escucharte</h2>
+                </div>
+                
+                <div class="contacto-grid">
+                    <div class="contacto-form-wrapper">
+                        <form id="contacto-sapienty" action="https://script.google.com/macros/s/AKfycbxOmspEgLkN1OweT7DNijgHR4tizTMsYczhH6Z2OysDb--RM0vXXMT2oXEGtIuPq-LmeA/exec" method="POST" class="contacto-form">
+                            <input type="text" name="Nombre" placeholder="Nombre" required>
+                            <input type="tel" name="Telefono" placeholder="Número de teléfono">
+                            <input type="email" name="Correo" placeholder="Email" required>
+                            <textarea name="Mensaje" placeholder="Mensaje" rows="5" required></textarea>
+                            <button type="submit" class="btn-primario">Enviar</button>
+                        </form>
+                    </div>
+
+                    <div class="contacto-info">
+                        <div class="info-item">
+                            <h4>CORREO</h4>
+                            <a href="mailto:contacto@sapienty.xyz">contacto@sapienty.xyz</a>
+                        </div>
+                        <div class="info-item">
+                            <h4>TELÉFONO CELULAR</h4>
+                            <a href="tel:+5215561301497">+52 1 55 6130 1497</a>
+                        </div>
+                        <div class="social-links-container">
+                            <h4>SÍGUENOS EN NUESTRAS REDES:</h4>
+                            <div class="social-icons">
+                                <a href="https://www.instagram.com/sapientymath/" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                <a href="https://www.facebook.com/SapientyMath" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.tiktok.com/@sapienty" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                                <a href="https://www.youtube.com/@Sapienty" class="social-icon" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sapienty Math Academy. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxOmspEgLkN1OweT7DNijgHR4tizTMsYczhH6Z2OysDb--RM0vXXMT2oXEGtIuPq-LmeA/exec'; // <-- ¡Recuerda poner tu URL aquí también!
+        const form = document.querySelector('#contacto-sapienty');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            // Cambiamos el texto del botón temporalmente para que el usuario sepa que está cargando
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = 'Enviando...';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert("¡Gracias! Hemos recibido tu mensaje correctamente.");
+                    form.reset(); // Limpia el formulario después de enviar
+                    btn.innerText = originalText; // Regresa el texto original al botón
+                })
+                .catch(error => {
+                    console.error('¡Error!', error.message);
+                    alert("Hubo un problema al enviar tu mensaje. Por favor, intenta más tarde.");
+                    btn.innerText = originalText;
+                });
+        });
+    </script>
+    </body>
+</html>
+</body>
+</html>

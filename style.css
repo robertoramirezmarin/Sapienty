@@ -1,0 +1,1116 @@
+/* --- VARIABLES CORPORATIVAS CON PALETA CÓSMICA --- */
+:root {
+    --bg-header: #5b1368; /* Tu morado oscuro original */
+    --color-btn: #72BF44; /* Tu verde brillante original para botones */
+    --color-btn-hover: #63a838;
+    --accent-yellow: #FFC107; /* Amarillo dorado para resaltar */
+    --text-hero: #FFFFFF;
+    --bg-body: #F8F9FA; /* Gris muy claro para el fondo general de la página */
+    --bg-white: #FFFFFF; /* Blanco puro para tarjetas */
+    --text-main: #333333; /* Gris oscuro para el texto */
+    --text-dark: #5b1368; /* Negro para títulos */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text-main);
+    background-color: var(--bg-body);
+    line-height: 1.6;
+}
+
+/* --- PANTALLA DE INTRODUCCIÓN (SPLASH SCREEN) --- */
+#pantalla-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-header); /* Fondo morado de Sapienty */
+    z-index: 99999; /* Asegura que esté por encima de TODO */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Efecto de desvanecimiento suave al desaparecer */
+    transition: opacity 0.8s ease-out, visibility 0.8s ease-out; 
+}
+
+#pantalla-intro video {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 15px; /* Bordes redondeados para que se vea más amigable */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Esta clase se añadirá con JavaScript para ocultar la pantalla */
+.ocultar-intro {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Clase para evitar que el usuario baje la página mientras ve la intro */
+body.bloquear-scroll {
+    overflow: hidden;
+}
+
+/* --- NUEVO HEADER MORADO --- */
+.header-dark {
+    background-color: var(--bg-header); /* Morado original */
+    padding: 1.2rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 10px rgba(91, 19, 104, 0.4);
+}
+
+/* Limpiamos el texto y preparamos el contenedor */
+.header-dark .logo {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+/* Controlamos el tamaño exacto de tu imagen */
+.header-dark .logo img {
+    max-height: 90px; /* <-- ¡Aquí está el cambio! Subimos de 50px a 90px */
+    width: auto;      
+    transition: transform 0.3s ease;
+}
+
+/* Efecto opcional: Que el logo crezca un poquito al pasar el mouse */
+.header-dark .logo img:hover {
+    transform: scale(1.05);
+}
+
+.header-dark .nav-links {
+    display: flex; 
+    gap: 30px;
+}
+
+.header-dark .nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+}
+
+.header-dark .nav-links a:hover {
+    color: var(--accent-yellow); /* Cambio a amarillo al hover */
+}
+
+.menu-icon {
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: none; 
+}
+
+/* --- SECCIÓN HERO: Video de Fondo --- */
+/* --- SECCIÓN HERO --- */
+/* --- SECCIÓN HERO --- */
+.hero-fotografico {
+    /* Quitamos var(--bg-header) y ponemos el color aproximado del video */
+    background-color: #782380; /* <-- NUEVO COLOR: Morado profundo del video */
+    
+    min-height: 85vh;
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start;
+    gap: 50px; 
+    padding: 0 5%;
+    position: relative; 
+}
+
+/* El texto de Bienvenida */
+.hero-contenido {
+    max-width: 600px;
+    text-align: left; 
+    color: white;
+    padding-bottom: 4rem; 
+    margin-left: 8%; /* <-- AQUÍ ESTÁ LA MAGIA: Empuja el texto a la derecha/centro */
+    z-index: 2; 
+}
+
+.hero-contenido h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* El texto de Bienvenida */
+.hero-contenido {
+    max-width: 600px;
+    text-align: left; 
+    color: white;
+    padding-bottom: 4rem; 
+    margin-left: 8%; 
+    position: relative; /* <-- NUEVO: Obligatorio para que el texto flote al frente */
+    z-index: 2; /* <-- Lo mantiene en la capa superior */
+}
+
+/* Video más pequeño a la derecha */
+/* Video más grande a la derecha */
+/* Video en el fondo */
+.video-lateral {
+    position: absolute; 
+    right: 0; 
+    bottom: 0; 
+    width: 1500px; 
+    max-width: 100%; /* Le damos un poco más de espacio */
+    z-index: 0; 
+    opacity: 0.85; 
+    
+    /* 👇 LA MAGIA PARA BORRAR LA LÍNEA RECTA 👇 */
+    /* Crea un desvanecimiento en el borde izquierdo (del 0% al 25% del video) */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
+    mask-image: linear-gradient(to right, transparent 0%, black 25%);
+}
+
+/* Botón Verde Cuadrado */
+.btn-primario {
+    background-color: var(--color-btn);
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primario:hover {
+    background-color: var(--color-btn-hover);
+    transform: translateY(-2px);
+}
+
+/* Aseguramos que las líneas decorativas estén en su lugar */
+.trust-badge-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 90%; 
+    max-width: 800px;
+    z-index: 2; 
+}
+
+.trust-badge-container hr {
+    flex-grow: 1; 
+    border: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.4); 
+}
+/* Botón Verde Cuadrado */
+.btn-primario {
+    background-color: var(--color-btn);
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primario:hover {
+    background-color: var(--color-btn-hover);
+    transform: translateY(-2px);
+}
+
+/* Aseguramos que las líneas decorativas estén encima del video */
+.trust-badge-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 90%; 
+    max-width: 800px;
+    z-index: 2; /* Por encima del video */
+}
+/* Botón Verde Cuadrado (Estilo formal pero con tu color) */
+.btn-primario {
+    background-color: var(--color-btn); /* Usa tu verde original #72BF44 */
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 4px; /* Borde más cuadrado, menos infantil */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primario:hover {
+    background-color: var(--color-btn-hover);
+    transform: translateY(-2px);
+}
+
+/* Imagen Hero Reducida a la Derecha */
+/* Video / Imagen Hero a la Derecha */
+.hero-fotografico-image {
+    max-width: 100%;
+    width: 450px; 
+    height: auto;
+    z-index: 1;
+    flex-basis: 40%; 
+    margin: 0; 
+    border-radius: 20px; /* Redondea las esquinas del video */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Le da profundidad */
+}
+
+/* --- TRUST BADGE DE GOOGLE (Con líneas a los lados) --- */
+.trust-badge-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 90%; /* Se extiende a lo largo de la pantalla inferior */
+    max-width: 800px;
+}
+
+.trust-badge-container hr {
+    flex-grow: 1; /* Hace que las líneas ocupen el espacio sobrante */
+    border: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.4); /* Línea blanca sutil */
+}
+
+.trust-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: white;
+    white-space: nowrap; /* Evita que el texto de Google se rompa en dos líneas */
+}
+
+.trust-content .stars {
+    color: var(--accent-yellow); /* Usa tu amarillo original */
+    font-size: 1.1rem;
+}
+
+.trust-content strong {
+    font-size: 1.3rem;
+    color: #4285F4; /* Azul característico de Google */
+}
+
+/* --- SECCIONES GENERALES --- */
+.section {
+    padding: 5rem 5%;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* --- METODOLOGÍA (Estilo Limpio y Corporativo) --- */
+/* --- SECCIÓN METODOLOGÍA (Con fondo matemático) --- */
+/* --- SECCIÓN METODOLOGÍA (Con fondo matemático cósmico) --- */
+/* --- SECCIÓN METODOLOGÍA (Con fondo matemático cósmico) --- */
+#metodologia {
+    overflow: hidden;
+    background-color: #804d85; 
+    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
+    background-size: 30px 30px; 
+    background-position: 0 0;
+    padding: 5rem 5%;
+    position: relative;
+    
+    /* 👇 MAGIA PARA QUITAR LOS BORDES BLANCOS 👇 */
+    max-width: 100%; /* Rompe el límite de tamaño para ocupar toda la pantalla */
+    margin: 0; /* Elimina márgenes externos */
+}
+#metodologia::after {
+    content: '';
+    position: absolute;
+    bottom: -300px; /* Lo bajamos bastante */
+    left: -150px; /* Lo pegamos a la izquierda */
+    width: 700px; /* Hacemos este círculo mucho más grande */
+    height: 700px;
+    background-color: #00B4D8; /* El color azul claro de tu referencia */
+    border-radius: 50%;
+    z-index: 0; /* Lo manda al fondo */
+}
+#metodologia::before {
+    content: '';
+    position: absolute;
+    top: -200px; /* Lo subimos para que cuelgue desde el techo */
+    right: -150px; /* Lo empujamos hacia la orilla derecha */
+    width: 600px; /* Un tamaño grande para que luzca bien */
+    height: 600px;
+    background-color: var(--accent-yellow); /* Tu color amarillo */
+    border-radius: 50%; /* Lo hace un círculo perfecto */
+    z-index: 0; /* Lo mantiene en el fondo */
+}
+
+/* 4. Protegemos tu contenido para que no quede tapado por las formas */
+/* Protege tu contenido para que quede por encima de los círculos */
+#metodologia h2,
+.acordeon-container {
+    position: relative;
+    z-index: 2; 
+}
+/* 👇 MAGIA PARA MANTENER LAS TARJETAS ORDENADAS 👇 */
+#metodologia .grid {
+    max-width: 1200px; /* Evita que las tarjetas se estiren demasiado en monitores gigantes */
+    margin: 0 auto; /* Centra el grupo de tarjetas perfectamente */
+}
+
+
+
+/* Tu cuadrícula se queda exactamente igual, funciona perfecto */
+.grid {
+    display: grid;
+    /* Esto crea 4 columnas del mismo tamaño (1 fracción cada una) */
+    grid-template-columns: repeat(4, 1fr); 
+    /* Ajusta este valor para dar más o menos espacio entre las tarjetas */
+    gap: 20px; 
+    /* Opcional: centra el contenedor si es necesario */
+    width: 100%; 
+}
+
+/* --- ESTILOS DEL ACORDEÓN (METODOLOGÍA) --- */
+.acordeon-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.acordeon-item {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    /* La línea amarilla sutil a la izquierda */
+    border-left: 6px solid var(--accent-yellow); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.acordeon-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.acordeon-header:hover {
+    background-color: #f9f9f9;
+}
+
+.header-izq {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-izq i {
+    font-size: 1.5rem;
+    color: var(--text-dark); /* Icono morado oscuro */
+}
+
+/* Título del acordeón (La letra S. A. P. I.) */
+.header-izq h3 {
+    margin: 0;
+    color: var(--text-dark); /* Color morado de tu marca para la letra suelta */
+    font-size: 1.3rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+}
+
+/* La píldora amarilla para la palabra */
+.header-izq h3 span {
+    background-color: var(--accent-yellow); /* Fondo amarillo */
+    padding: 4px 18px; /* Espacio para que no se vea apretado */
+    border-radius: 30px; /* Bordes totalmente redondeados */
+    margin-left: 8px; /* Separación entre la letra (S.) y la píldora */
+    color: var(--text-dark); /* Texto morado oscuro para que contraste con el amarillo */
+}
+
+.icono-flecha {
+    color: #888;
+    transition: transform 0.3s ease;
+}
+
+/* --- ESTILOS DEL CONTENIDO DESPLEGABLE --- */
+.acordeon-content {
+    max-height: 0; /* Oculto por defecto */
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+    background-color: #FAFAFA; /* Un gris muuuy clarito para diferenciarlo del encabezado */
+}
+
+.content-interno {
+    padding: 30px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    border-top: 1px solid #eee;
+}
+
+.texto-contenido {
+    flex: 1;
+    text-align: left;
+}
+
+.texto-contenido h4 {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.texto-contenido p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Espacio para el ejemplo a la derecha */
+.imagen-ejemplo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para las imágenes dentro del acordeón */
+.img-acordeon {
+    width: 100%; /* Hace que la imagen ocupe todo el espacio disponible en la columna derecha */
+    max-width: 450px; /* Evita que la imagen se haga gigante en pantallas muy grandes */
+    height: auto;
+    border-radius: 8px; /* Bordes redondeados para que combine con tus tarjetas */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Una sombra suave para darle volumen */
+}
+
+/* --- CLASES ACTIVAS (Cuando se le da clic) --- */
+.acordeon-item.activo {
+    /* La línea amarilla se hace más gruesa al estar activo */
+    border-left: 12px solid var(--accent-yellow); 
+}
+
+.acordeon-item.activo .icono-flecha {
+    transform: rotate(180deg); /* Gira la flecha hacia arriba */
+}
+
+/* Adaptación a celulares */
+@media (max-width: 768px) {
+    .content-interno {
+        flex-direction: column; /* Apila el texto y la imagen en celulares */
+        gap: 20px;
+    }
+}
+/* --- PRECIOS (Estilo Claro y Profesional) --- */
+/* --- SECCIÓN DE PLANES CON ESTILO CÓSMICO --- */
+#planes {
+    /* Fondo morado con estrellas como en tu inicio */
+    background-color: #804d85; 
+    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
+    background-size: 30px 30px; 
+    background-position: 0 0;
+    padding: 5rem 5%;
+    max-width: 100%; 
+    margin: 0;
+}
+
+#planes h2 {
+    color: white; /* Título en blanco para que resalte sobre el morado */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tarjetas flotantes estilo 3D */
+.price-card {
+    background: var(--bg-white);
+    border: none; /* Adiós al borde gris aburrido */
+    border-radius: 15px; /* Bordes más redondeados */
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25); /* Sombra para que floten sobre el fondo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Efecto al pasar el mouse (se elevan hacia ti) */
+.price-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.price-card h3 {
+    color: var(--text-dark);
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.price {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-dark); 
+    margin: 1rem 0 1.5rem 0;
+}
+
+.price span {
+    font-size: 1.1rem;
+    color: #777;
+    font-weight: 400;
+}
+/* Corrección: El número del precio vuelve a ser grande y morado */
+.price .precio-valor {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--text-dark); 
+}
+
+.price-card p {
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* --- ETIQUETA DE MESES SIN INTERESES (MSI) --- */
+.msi-badge {
+    background-color: rgba(0, 158, 227, 0.1); /* Fondo azul muy clarito estilo Mercado Pago */
+    color: #009ee3; /* Azul fuerte original de Mercado Pago para el texto */
+    padding: 8px 16px;
+    border-radius: 20px; /* Forma de píldora redondeada */
+    font-size: 0.95rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Separación entre el icono de la tarjeta y el texto */
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 158, 227, 0.3); /* Borde sutil azul */
+    transition: transform 0.2s ease;
+}
+
+/* Pequeño efecto al pasar el mouse por encima */
+.msi-badge:hover {
+    transform: scale(1.05);
+    background-color: rgba(0, 158, 227, 0.15);
+}
+
+/* Tarjeta destacada (Astronauta+) */
+.price-card.featured {
+    border: 4px solid var(--accent-yellow);
+    transform: scale(1.05); /* La hace un poco más grande por defecto */
+}
+
+.price-card.featured:hover {
+    transform: scale(1.05) translateY(-10px);
+}
+
+.featured-label {
+    background: var(--accent-yellow);
+    color: var(--text-dark);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 8px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 10px 10px 0 0;
+}
+/* --- ICONOS 3D DE LOS PLANES --- */
+.icono-plan {
+    width: 140px; /* Ajusta el tamaño general de la imagen */
+    height: 140px; 
+    object-fit: contain; /* Evita que la imagen se deforme o se estire */
+    margin-bottom: 1.5rem; /* Da espacio entre el icono y el título del plan */
+    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2)); /* Crea una sombra en la forma de la imagen para que resalte más */
+    transition: transform 0.4s ease; /* Transición suave para la animación */
+}
+
+/* Efecto mágico: Cuando pasas el mouse por la tarjeta, el icono crece y "flota" un poco más arriba */
+.price-card:hover .icono-plan {
+    transform: scale(1.1) translateY(-10px);
+}
+
+/* Ajuste de margen superior para la tarjeta destacada para que el icono no choque con la etiqueta amarilla */
+.price-card.featured .icono-plan {
+    margin-top: 1rem;
+}
+
+/* Ajuste fino para el botón dentro de las tarjetas */
+.price-card .btn-primario {
+    margin-top: auto; /* Empuja el botón siempre hacia abajo */
+    width: 80%;
+}
+/* --- CAJAS DE BENEFICIOS DESTACADOS --- */
+.beneficio-destacado {
+    font-size: 1.05rem;
+    font-weight: 600; /* Hace la letra más gordita y legible */
+    color: var(--text-dark);
+    background-color: rgba(114, 191, 68, 0.1); /* Un fondo verde súper clarito */
+    padding: 12px 15px;
+    border-radius: 8px; /* Bordes redondeados */
+    margin: 15px auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px; /* Separación entre el icono y el texto */
+    text-align: left;
+    border: 1px solid rgba(114, 191, 68, 0.3); /* Borde verde sutil */
+    max-width: 90%;
+}
+
+/* El icono de la palomita verde */
+.beneficio-destacado i {
+    color: var(--color-btn); /* Tu verde brillante */
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+/* --- ESTILO ESPECIAL PARA EL REGALO --- */
+.beneficio-destacado.regalo {
+    background-color: rgba(255, 193, 7, 0.15); /* Fondo amarillito */
+    border: 1px solid rgba(255, 193, 7, 0.5); /* Borde amarillo */
+}
+
+/* El icono de cajita de regalo */
+.beneficio-destacado.regalo i {
+    color: #d9a400; /* Un amarillo más oscuro/dorado para que resalte */
+}
+
+/* --- INTERRUPTOR DE MONEDA (MXN / USD) --- */
+.currency-toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.currency-toggle {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1); /* Fondo cristalino */
+    border-radius: 30px; /* Forma de píldora */
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toggle-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Cuando el botón está seleccionado (Color Amarillo) */
+.toggle-btn.active {
+    background-color: var(--accent-yellow);
+    color: var(--text-dark);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* --- ICONOS 3D DE LOS PLANES --- */
+.icono-plan {
+    width: 140px; 
+    height: 140px; 
+    object-fit: contain; 
+    margin-bottom: 1.5rem; 
+    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.15)); 
+    transition: transform 0.4s ease; 
+}
+
+.price-card:hover .icono-plan {
+    transform: scale(1.1) translateY(-10px);
+}
+
+.price-card.featured .icono-plan {
+    margin-top: 1rem;
+}
+
+/* --- INTERRUPTOR DE MONEDA (MXN / USD) --- */
+.currency-toggle-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.currency-toggle {
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 30px; 
+    padding: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.toggle-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.toggle-btn.active {
+    background-color: var(--accent-yellow);
+    color: var(--text-dark);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+
+/* --- PIE DE PÁGINA (FOOTER) --- */
+footer {
+    background-color: var(--bg-header); /* Morado original */
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    padding: 3rem 5%;
+}
+
+/* --- BOTÓN DE WHATSAPP FLOTANTE --- */
+.wsp-floating-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.wsp-text-bubble {
+    background-color: white;
+    color: var(--text-dark);
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    position: relative;
+}
+
+.wsp-text-bubble::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    border-width: 10px 0 10px 10px;
+    border-style: solid;
+    border-color: transparent transparent transparent white;
+}
+
+.wsp-icon-circle {
+    width: 60px;
+    height: 60px;
+    background-color: #25D366; /* Verde oficial de WhatsApp */
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.wsp-icon-circle:hover {
+    transform: scale(1.1);
+}
+
+.wsp-icon-circle svg {
+    fill: white;
+    width: 35px;
+    height: 35px;
+}
+
+/* --- SECCIÓN CONTACTO --- */
+.contacto-section {
+    background-color: var(--bg-header); /* Tu morado oscuro */
+    color: white;
+    position: relative;
+    overflow: hidden; /* Evita que las formas de fondo se salgan */
+    padding: 6rem 5%;
+    margin: 0;
+    max-width: 100%;
+}
+
+/* 1. Formas decorativas de fondo (Ondas abstractas) */
+.contacto-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background-color: rgba(255, 255, 255, 0.03); /* Mancha muy sutil */
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.contacto-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 800px;
+    height: 800px;
+    background-color: rgba(255, 255, 255, 0.04);
+    /* Forma orgánica "blob" para imitar tus curvas */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; 
+    z-index: 0;
+}
+
+.contacto-container {
+    position: relative;
+    z-index: 2; /* Protege el contenido de los fondos */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* 2. Encabezado */
+.contacto-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.contacto-header h2 {
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 0;
+    text-transform: none; /* Amigable, sin todo mayúsculas */
+    letter-spacing: normal;
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+/* 3. Estilos del Formulario */
+.contacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 0px; /* Cuadrados como en tu diseño */
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: white;
+    color: var(--text-main);
+    box-sizing: border-box; 
+}
+
+.contacto-form input::placeholder,
+.contacto-form textarea::placeholder {
+    color: #888;
+}
+
+.contacto-form textarea {
+    resize: vertical;
+}
+
+.contacto-form .btn-primario {
+    align-self: flex-start; 
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 12px 30px;
+    border-radius: 8px; /* Botón ligeramente redondeado */
+}
+
+/* 4. Información de la derecha */
+.contacto-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    text-align: center; 
+}
+
+.info-item h4, .social-links-container h4 {
+    color: white;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+/* Textos verdes */
+.info-item a {
+    color: var(--color-btn); /* Tu verde característico */
+    font-size: 1.3rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.info-item a:hover {
+    color: white;
+}
+
+/* 5. Redes Sociales */
+.social-icons {
+    display: flex;
+    flex-direction: column; /* Apilados verticalmente */
+    align-items: center;
+    gap: 12px;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background-color: white; 
+    border-radius: 50%;
+    text-decoration: none;
+    color: var(--bg-header); /* Icono color morado */
+    font-size: 1.3rem;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    background-color: var(--color-btn); /* Se pintan de verde */
+    color: white;
+}
+
+/* 6. Adaptación para celulares */
+@media (max-width: 768px) {
+    .contacto-grid {
+        grid-template-columns: 1fr; /* Una sola columna en celulares */
+        gap: 3rem;
+    }
+    
+    .social-icons {
+        flex-direction: row; /* En celulares los ponemos en fila horizontal */
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .contacto-form .btn-primario {
+        align-self: center; /* Botón centrado en móvil */
+        width: 100%;
+    }
+}
+
+/* --- AJUSTES PARA CELULARES (RESPONSIVE) --- */
+/* --- AJUSTES PARA CELULARES Y PANTALLAS VERTICALES --- */
+/* --- AJUSTES PARA CELULARES, TABLETS Y PANTALLAS DIVIDIDAS --- */
+@media (max-width: 1100px) {
+    .hero-fotografico {
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .hero-contenido {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .hero-contenido h1 {
+        font-size: 2.5rem;
+    }
+
+    .video-lateral {
+        width: 100%;
+        max-width: 100%; 
+        height: 100%; 
+        top: 0; 
+        left: 0;
+        
+        /* 👇 Agregamos esto para "borrar" las posiciones anteriores 👇 */
+        bottom: auto; 
+        right: auto; 
+        
+        object-fit: cover; 
+        opacity: 0.35; 
+        
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+}
+/* --- AJUSTES DE METODOLOGÍA PARA TABLETAS Y CELULARES --- */
+
+/* Para pantallas medianas (Tabletas y laptops pequeñas) */
+@media (max-width: 1024px) {
+    #metodologia .grid {
+        grid-template-columns: repeat(2, 1fr); /* Cambia a 2 tarjetas por fila */
+        gap: 30px;
+    }
+}
+
+/* Para pantallas pequeñas (Teléfonos celulares) */
+@media (max-width: 768px) {
+    #metodologia .grid {
+        grid-template-columns: repeat(1, 1fr); /* Cambia a 1 sola tarjeta por fila (apiladas) */
+        gap: 30px; /* Da un poco de respiro entre cada tarjeta */
+    }
+    
+    /* Un pequeño ajuste para que las tarjetas no toquen las orillas del teléfono */
+    .card {
+        padding: 2rem 1.5rem;
+    }
+}
+/* Asegura que la sección ocupe al menos el alto de la pantalla */
+.contacto-section {
+    min-height: 80vh; 
+    display: flex;
+    align-items: center;
+}
