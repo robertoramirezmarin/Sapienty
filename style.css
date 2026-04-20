@@ -11,6 +11,18 @@
     --text-dark: #5b1368; /* Negro para títulos */
 }
 
+/* --- REGLA UNIVERSAL PARA EVITAR DESBORDAMIENTOS --- */
+*, *::before, *::after {
+    box-sizing: border-box; /* Hace que el padding no sume ancho extra */
+}
+
+html, body {
+    overflow-x: hidden; /* Corta de tajo cualquier cosa que intente salirse por la derecha o izquierda */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -1113,4 +1125,58 @@ footer {
     min-height: 80vh; 
     display: flex;
     align-items: center;
+}
+/* --- ADAPTACIÓN PARA CELULARES (Pantallas menores a 768px) --- */
+@media (max-width: 768px) {
+    
+    /* 1. Ocultar los enlaces de texto */
+    /* --- CONFIGURACIÓN DEL MENÚ DESPLEGABLE MÓVIL --- */
+    .header-dark .nav-links {
+        display: none; /* Sigue oculto por defecto */
+        flex-direction: column; /* Apila los enlaces uno sobre otro */
+        position: absolute;
+        top: 100%; /* Lo pone justo debajo de la barra morada */
+        left: 0;
+        width: 100%;
+        background-color: var(--bg-header); /* Usa tu color morado */
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.3); /* Sombrita para que resalte */
+        z-index: 999;
+    }
+
+    /* Esta es la clase "mágica" que JavaScript va a prender y apagar */
+    .header-dark .nav-links.activo {
+        display: flex; 
+    }
+
+    /* Hacemos los botones más grandes para que sea fácil tocarlos con el dedo */
+    .header-dark .nav-links a {
+        padding: 15px;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    
+    /* 2. Mostrar el icono de las 3 rayitas */
+    .menu-icon {
+        display: block; 
+        font-size: 1.8rem;
+        color: white;
+        cursor: pointer;
+    }
+    
+    /* 3. Ajustar el tamaño del logo para que no quite tanto espacio */
+    .header-dark .logo img {
+        max-height: 60px; 
+    }
+
+    /* 4. Ajustar el texto gigante de bienvenida para que quepa bien */
+    .hero-contenido h1 {
+        font-size: 2.2rem;
+        word-wrap: break-word; /* Obliga a las palabras muy largas a saltar de línea */
+    }
+    
+    .hero-fotografico {
+        padding-top: 2rem; /* Le da un respiro arriba */
+    }
 }
