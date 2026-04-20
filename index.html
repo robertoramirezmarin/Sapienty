@@ -183,5 +183,26 @@
     });
 </script>
 
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuIcon = document.querySelector('.menu-icon');
+            const navLinks = document.querySelector('.nav-links');
+
+            // Cuando le dan clic al icono...
+            menuIcon.addEventListener('click', function() {
+                // Prende o apaga la clase 'activo'
+                navLinks.classList.toggle('activo');
+            });
+
+            // Opcional: Cierra el menú automáticamente si tocan un enlace (muy útil en celulares)
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('activo');
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
