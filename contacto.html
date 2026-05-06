@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sapienty</title>
+    <title>Sapienty | Clases de Matemáticas Online</title>
     <link rel="icon" type="image/webp" href="Logo1.webp">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -15,8 +15,7 @@
         </a>
         
         <nav class="nav-links">
-            <a href="#nosotros">NOSOTROS</a>
-            <a href="#blog">BLOG</a>
+            <a href="nosotros.html">NOSOTROS</a>
             <a href="planes.html">PLANES</a>
             <a href="contacto.html">CONTACTO</a>
         </nav>
@@ -67,9 +66,28 @@
             </div>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 Sapienty Math Academy. Todos los derechos reservados.</p>
+    <footer class="footer-moderno">
+        <div class="footer-links">
+            <a href="terminos.html">Términos y condiciones</a>
+            <a href="privacidad.html">Política de privacidad</a>
+        </div>
+        <div class="footer-logo">
+            <a href="index.html" title="Regresar al inicio">
+                <img src="Logo1.webp" alt="Logo Sapienty">
+            </a>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; 2026 Sapienty</p>
+        </div>
     </footer>
+    <div id="mensaje-exito" class="modal-exito oculto">
+        <div class="modal-contenido">
+            <i class="fas fa-check-circle"></i>
+            <h3>¡Mensaje Enviado!</h3>
+            <p>Gracias por escribir a Sapienty. Nos pondremos en contacto contigo muy pronto.</p>
+            <button id="cerrar-modal" class="btn-primario">¡Entendido!</button>
+        </div>
+    </div>
 
     <script>
         const scriptURL = 'https://script.google.com/macros/s/AKfycbxOmspEgLkN1OweT7DNijgHR4tizTMsYczhH6Z2OysDb--RM0vXXMT2oXEGtIuPq-LmeA/exec'; // <-- ¡Recuerda poner tu URL aquí también!
@@ -77,16 +95,15 @@
 
         form.addEventListener('submit', e => {
             e.preventDefault();
-            // Cambiamos el texto del botón temporalmente para que el usuario sepa que está cargando
             const btn = form.querySelector('button');
             const originalText = btn.innerText;
             btn.innerText = 'Enviando...';
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    alert("¡Gracias! Hemos recibido tu mensaje correctamente.");
-                    form.reset(); // Limpia el formulario después de enviar
-                    btn.innerText = originalText; // Regresa el texto original al botón
+                    document.getElementById('mensaje-exito').classList.remove('oculto');
+                    form.reset(); 
+                    btn.innerText = originalText; 
                 })
                 .catch(error => {
                     console.error('¡Error!', error.message);
@@ -94,19 +111,22 @@
                     btn.innerText = originalText;
                 });
         });
+        document.getElementById('cerrar-modal').addEventListener('click', function() {
+            document.getElementById('mensaje-exito').classList.add('oculto');
+        });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuIcon = document.querySelector('.menu-icon');
             const navLinks = document.querySelector('.nav-links');
 
-            // Cuando le dan clic al icono...
+        
             menuIcon.addEventListener('click', function() {
-                // Prende o apaga la clase 'activo'
+            
                 navLinks.classList.toggle('activo');
             });
 
-            // Opcional: Cierra el menú automáticamente si tocan un enlace (muy útil en celulares)
+            
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => {
                 link.addEventListener('click', () => {

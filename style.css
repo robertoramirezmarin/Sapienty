@@ -1,74 +1,81 @@
-/* --- VARIABLES CORPORATIVAS CON PALETA CÓSMICA --- */
+/* =========================================
+   1. VARIABLES Y REGLAS GENERALES
+   ========================================= */
 :root {
-    --bg-header: #5b1368; /* Tu morado oscuro original */
-    --color-btn: #72BF44; /* Tu verde brillante original para botones */
+    --bg-header: #5b1368;
+    --color-btn: #72BF44;
     --color-btn-hover: #63a838;
-    --accent-yellow: #FFC107; /* Amarillo dorado para resaltar */
+    --accent-yellow: #FFC107;
     --text-hero: #FFFFFF;
-    --bg-body: #F8F9FA; /* Gris muy claro para el fondo general de la página */
-    --bg-white: #FFFFFF; /* Blanco puro para tarjetas */
-    --text-main: #333333; /* Gris oscuro para el texto */
-    --text-dark: #5b1368; /* Negro para títulos */
+    --bg-body: #F8F9FA;
+    --bg-white: #FFFFFF;
+    --text-main: #333333;
+    --text-dark: #5b1368;
 }
 
-/* --- REGLA UNIVERSAL PARA EVITAR DESBORDAMIENTOS --- */
 *, *::before, *::after {
-    box-sizing: border-box; /* Hace que el padding no sume ancho extra */
+    box-sizing: border-box;
 }
 
 html, body {
-    overflow-x: hidden; /* Corta de tajo cualquier cosa que intente salirse por la derecha o izquierda */
+    overflow-x: hidden;
     width: 100%;
     margin: 0;
     padding: 0;
-}
-
-body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
     color: var(--text-main);
     background-color: var(--bg-body);
     line-height: 1.6;
 }
 
-/* --- PANTALLA DE INTRODUCCIÓN (SPLASH SCREEN) --- */
+/* Botón Verde General */
+.btn-primario {
+    background-color: var(--color-btn);
+    color: white;
+    text-decoration: none;
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-primario:hover {
+    background-color: var(--color-btn-hover);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   2. PANTALLA DE INTRODUCCIÓN (SPLASH)
+   ========================================= */
 #pantalla-intro {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--bg-header); /* Fondo morado de Sapienty */
-    z-index: 99999; /* Asegura que esté por encima de TODO */
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: var(--bg-header);
+    z-index: 99999;
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Efecto de desvanecimiento suave al desaparecer */
     transition: opacity 0.8s ease-out, visibility 0.8s ease-out; 
 }
 
 #pantalla-intro video {
     max-width: 90%;
     max-height: 90vh;
-    border-radius: 15px; /* Bordes redondeados para que se vea más amigable */
+    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* Esta clase se añadirá con JavaScript para ocultar la pantalla */
-.ocultar-intro {
-    opacity: 0;
-    visibility: hidden;
-}
+.ocultar-intro { opacity: 0; visibility: hidden; }
+body.bloquear-scroll { overflow: hidden; }
 
-/* Clase para evitar que el usuario baje la página mientras ve la intro */
-body.bloquear-scroll {
-    overflow: hidden;
-}
-
-/* --- NUEVO HEADER MORADO --- */
+/* =========================================
+   3. BARRA DE NAVEGACIÓN (HEADER)
+   ========================================= */
 .header-dark {
-    background-color: var(--bg-header); /* Morado original */
+    background-color: var(--bg-header);
     padding: 1.2rem 5%;
     display: flex;
     justify-content: space-between;
@@ -79,30 +86,15 @@ body.bloquear-scroll {
     box-shadow: 0 4px 10px rgba(91, 19, 104, 0.4);
 }
 
-/* Limpiamos el texto y preparamos el contenedor */
-.header-dark .logo {
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-}
-
-/* Controlamos el tamaño exacto de tu imagen */
+.header-dark .logo { text-decoration: none; display: flex; align-items: center; }
 .header-dark .logo img {
-    max-height: 90px; /* <-- ¡Aquí está el cambio! Subimos de 50px a 90px */
+    max-height: 90px;
     width: auto;      
     transition: transform 0.3s ease;
 }
+.header-dark .logo img:hover { transform: scale(1.05); }
 
-/* Efecto opcional: Que el logo crezca un poquito al pasar el mouse */
-.header-dark .logo img:hover {
-    transform: scale(1.05);
-}
-
-.header-dark .nav-links {
-    display: flex; 
-    gap: 30px;
-}
-
+.header-dark .nav-links { display: flex; gap: 30px; }
 .header-dark .nav-links a {
     color: white;
     text-decoration: none;
@@ -112,25 +104,17 @@ body.bloquear-scroll {
     letter-spacing: 0.5px;
     transition: color 0.3s;
 }
-
-.header-dark .nav-links a:hover {
-    color: var(--accent-yellow); /* Cambio a amarillo al hover */
-}
+.header-dark .nav-links a:hover { color: var(--accent-yellow); }
 
 .menu-icon {
-    color: white;
-    font-size: 1.8rem;
-    cursor: pointer;
-    display: none; 
+    color: white; font-size: 1.8rem; cursor: pointer; display: none; 
 }
 
-/* --- SECCIÓN HERO: Video de Fondo --- */
-/* --- SECCIÓN HERO --- */
-/* --- SECCIÓN HERO --- */
+/* =========================================
+   4. SECCIÓN HERO (INICIO)
+   ========================================= */
 .hero-fotografico {
-    /* Quitamos var(--bg-header) y ponemos el color aproximado del video */
-    background-color: #782380; /* <-- NUEVO COLOR: Morado profundo del video */
-    
+    background-color: #782380;
     min-height: 85vh;
     display: flex;
     align-items: center; 
@@ -140,13 +124,13 @@ body.bloquear-scroll {
     position: relative; 
 }
 
-/* El texto de Bienvenida */
 .hero-contenido {
     max-width: 600px;
     text-align: left; 
     color: white;
     padding-bottom: 4rem; 
-    margin-left: 8%; /* <-- AQUÍ ESTÁ LA MAGIA: Empuja el texto a la derecha/centro */
+    margin-left: 8%; 
+    position: relative;
     z-index: 2; 
 }
 
@@ -159,65 +143,27 @@ body.bloquear-scroll {
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-/* El texto de Bienvenida */
-.hero-contenido {
-    max-width: 600px;
-    text-align: left; 
-    color: white;
-    padding-bottom: 4rem; 
-    margin-left: 8%; 
-    position: relative; /* <-- NUEVO: Obligatorio para que el texto flote al frente */
-    z-index: 2; /* <-- Lo mantiene en la capa superior */
-}
-
-/* Video más pequeño a la derecha */
-/* Video más grande a la derecha */
-/* Video en el fondo */
 .video-lateral {
     position: absolute; 
-    right: 0; 
-    bottom: 0; 
+    right: 0; bottom: 0; 
     width: 1500px; 
-    max-width: 100%; /* Le damos un poco más de espacio */
+    max-width: 100%;
     z-index: 0; 
     opacity: 0.85; 
-    
-    /* 👇 LA MAGIA PARA BORRAR LA LÍNEA RECTA 👇 */
-    /* Crea un desvanecimiento en el borde izquierdo (del 0% al 25% del video) */
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%);
     mask-image: linear-gradient(to right, transparent 0%, black 25%);
 }
 
-/* Botón Verde Cuadrado */
-.btn-primario {
-    background-color: var(--color-btn);
-    color: white;
-    text-decoration: none;
-    padding: 15px 35px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    display: inline-block;
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.btn-primario:hover {
-    background-color: var(--color-btn-hover);
-    transform: translateY(-2px);
-}
-
-/* Aseguramos que las líneas decorativas estén en su lugar */
+/* Trust Badge */
 .trust-badge-container {
     position: absolute;
-    bottom: 2rem;
-    left: 5%;
+    bottom: 2rem; left: 5%;
     display: flex;
     align-items: center;
     gap: 20px;
     width: 90%; 
     max-width: 800px;
-    z-index: 2; 
+    z-index: 2;
 }
 
 .trust-badge-container hr {
@@ -225,958 +171,562 @@ body.bloquear-scroll {
     border: none;
     border-top: 2px solid rgba(255, 255, 255, 0.4); 
 }
-/* Botón Verde Cuadrado */
-.btn-primario {
-    background-color: var(--color-btn);
-    color: white;
-    text-decoration: none;
-    padding: 15px 35px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    display: inline-block;
-    border-radius: 4px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.btn-primario:hover {
-    background-color: var(--color-btn-hover);
-    transform: translateY(-2px);
-}
-
-/* Aseguramos que las líneas decorativas estén encima del video */
-.trust-badge-container {
-    position: absolute;
-    bottom: 2rem;
-    left: 5%;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 90%; 
-    max-width: 800px;
-    z-index: 2; /* Por encima del video */
-}
-/* Botón Verde Cuadrado (Estilo formal pero con tu color) */
-.btn-primario {
-    background-color: var(--color-btn); /* Usa tu verde original #72BF44 */
-    color: white;
-    text-decoration: none;
-    padding: 15px 35px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    display: inline-block;
-    border-radius: 4px; /* Borde más cuadrado, menos infantil */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-.btn-primario:hover {
-    background-color: var(--color-btn-hover);
-    transform: translateY(-2px);
-}
-
-/* Imagen Hero Reducida a la Derecha */
-/* Video / Imagen Hero a la Derecha */
-.hero-fotografico-image {
-    max-width: 100%;
-    width: 450px; 
-    height: auto;
-    z-index: 1;
-    flex-basis: 40%; 
-    margin: 0; 
-    border-radius: 20px; /* Redondea las esquinas del video */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Le da profundidad */
-}
-
-/* --- TRUST BADGE DE GOOGLE (Con líneas a los lados) --- */
-.trust-badge-container {
-    position: absolute;
-    bottom: 2rem;
-    left: 5%;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    width: 90%; /* Se extiende a lo largo de la pantalla inferior */
-    max-width: 800px;
-}
-
-.trust-badge-container hr {
-    flex-grow: 1; /* Hace que las líneas ocupen el espacio sobrante */
-    border: none;
-    border-top: 2px solid rgba(255, 255, 255, 0.4); /* Línea blanca sutil */
-}
 
 .trust-content {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-    color: white;
-    white-space: nowrap; /* Evita que el texto de Google se rompa en dos líneas */
+    display: flex; align-items: center; gap: 10px;
+    font-size: 1rem; font-weight: 600; letter-spacing: 1px;
+    color: white; white-space: nowrap;
 }
+.trust-content .stars { color: var(--accent-yellow); font-size: 1.1rem; }
+.trust-content strong { font-size: 1.3rem; color: #4285F4; }
 
-.trust-content .stars {
-    color: var(--accent-yellow); /* Usa tu amarillo original */
-    font-size: 1.1rem;
-}
-
-.trust-content strong {
-    font-size: 1.3rem;
-    color: #4285F4; /* Azul característico de Google */
-}
-
-/* --- SECCIONES GENERALES --- */
-.section {
-    padding: 5rem 5%;
-    max-width: 1200px;
-    margin: auto;
-    text-align: center;
-}
-
-.section h2 {
-    font-size: 2.5rem;
-    color: var(--text-dark);
-    margin-bottom: 3rem;
-    text-transform: uppercase;
-    font-weight: 800;
-    letter-spacing: 1px;
-}
-
-/* --- METODOLOGÍA (Estilo Limpio y Corporativo) --- */
-/* --- SECCIÓN METODOLOGÍA (Con fondo matemático) --- */
-/* --- SECCIÓN METODOLOGÍA (Con fondo matemático cósmico) --- */
-/* --- SECCIÓN METODOLOGÍA (Con fondo matemático cósmico) --- */
+/* =========================================
+   5. METODOLOGÍA S.A.P.I (ACORDEÓN)
+   ========================================= */
 #metodologia {
     overflow: hidden;
     background-color: #804d85; 
     background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
     background-size: 30px 30px; 
-    background-position: 0 0;
     padding: 5rem 5%;
     position: relative;
-    
-    /* 👇 MAGIA PARA QUITAR LOS BORDES BLANCOS 👇 */
-    max-width: 100%; /* Rompe el límite de tamaño para ocupar toda la pantalla */
-    margin: 0; /* Elimina márgenes externos */
-}
-#metodologia::after {
-    content: '';
-    position: absolute;
-    bottom: -300px; /* Lo bajamos bastante */
-    left: -150px; /* Lo pegamos a la izquierda */
-    width: 700px; /* Hacemos este círculo mucho más grande */
-    height: 700px;
-    background-color: #00B4D8; /* El color azul claro de tu referencia */
-    border-radius: 50%;
-    z-index: 0; /* Lo manda al fondo */
-}
-#metodologia::before {
-    content: '';
-    position: absolute;
-    top: -200px; /* Lo subimos para que cuelgue desde el techo */
-    right: -150px; /* Lo empujamos hacia la orilla derecha */
-    width: 600px; /* Un tamaño grande para que luzca bien */
-    height: 600px;
-    background-color: var(--accent-yellow); /* Tu color amarillo */
-    border-radius: 50%; /* Lo hace un círculo perfecto */
-    z-index: 0; /* Lo mantiene en el fondo */
+    max-width: 100%;
+    margin: 0;
+    text-align: center;
 }
 
-/* 4. Protegemos tu contenido para que no quede tapado por las formas */
-/* Protege tu contenido para que quede por encima de los círculos */
-#metodologia h2,
-.acordeon-container {
+#metodologia h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
     position: relative;
-    z-index: 2; 
-}
-/* 👇 MAGIA PARA MANTENER LAS TARJETAS ORDENADAS 👇 */
-#metodologia .grid {
-    max-width: 1200px; /* Evita que las tarjetas se estiren demasiado en monitores gigantes */
-    margin: 0 auto; /* Centra el grupo de tarjetas perfectamente */
+    z-index: 2;
 }
 
-
-
-/* Tu cuadrícula se queda exactamente igual, funciona perfecto */
-.grid {
-    display: grid;
-    /* Esto crea 4 columnas del mismo tamaño (1 fracción cada una) */
-    grid-template-columns: repeat(4, 1fr); 
-    /* Ajusta este valor para dar más o menos espacio entre las tarjetas */
-    gap: 20px; 
-    /* Opcional: centra el contenedor si es necesario */
-    width: 100%; 
+#metodologia::before {
+    content: ''; position: absolute;
+    top: -200px; right: -150px;
+    width: 600px; height: 600px;
+    background-color: var(--accent-yellow);
+    border-radius: 50%; z-index: 0;
 }
 
-/* --- ESTILOS DEL ACORDEÓN (METODOLOGÍA) --- */
+#metodologia::after {
+    content: ''; position: absolute;
+    bottom: -300px; left: -150px;
+    width: 700px; height: 700px;
+    background-color: #00B4D8;
+    border-radius: 50%; z-index: 0;
+}
+
 .acordeon-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    max-width: 1000px; margin: 0 auto;
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative; z-index: 2;
 }
 
 .acordeon-item {
     background-color: white;
     border-radius: 8px;
     overflow: hidden;
-    /* La línea amarilla sutil a la izquierda */
     border-left: 6px solid var(--accent-yellow); 
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
 }
 
 .acordeon-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 30px;
-    cursor: pointer;
-    background-color: white;
-    transition: background-color 0.3s ease;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 30px; cursor: pointer;
+    background-color: white; transition: background-color 0.3s ease;
 }
+.acordeon-header:hover { background-color: #f9f9f9; }
 
-.acordeon-header:hover {
-    background-color: #f9f9f9;
-}
-
-.header-izq {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.header-izq i {
-    font-size: 1.5rem;
-    color: var(--text-dark); /* Icono morado oscuro */
-}
-
-/* Título del acordeón (La letra S. A. P. I.) */
+.header-izq { display: flex; align-items: center; gap: 20px; }
+.header-izq i { font-size: 1.5rem; color: var(--text-dark); }
 .header-izq h3 {
-    margin: 0;
-    color: var(--text-dark); /* Color morado de tu marca para la letra suelta */
-    font-size: 1.3rem;
-    font-weight: 800;
-    display: flex;
-    align-items: center;
+    margin: 0; color: var(--text-dark);
+    font-size: 1.3rem; font-weight: 800; display: flex; align-items: center;
 }
-
-/* La píldora amarilla para la palabra */
 .header-izq h3 span {
-    background-color: var(--accent-yellow); /* Fondo amarillo */
-    padding: 4px 18px; /* Espacio para que no se vea apretado */
-    border-radius: 30px; /* Bordes totalmente redondeados */
-    margin-left: 8px; /* Separación entre la letra (S.) y la píldora */
-    color: var(--text-dark); /* Texto morado oscuro para que contraste con el amarillo */
+    background-color: var(--accent-yellow);
+    padding: 4px 18px; border-radius: 30px;
+    margin-left: 8px; color: var(--text-dark);
 }
 
-.icono-flecha {
-    color: #888;
-    transition: transform 0.3s ease;
-}
+.icono-flecha { color: #888; transition: transform 0.3s ease; }
 
-/* --- ESTILOS DEL CONTENIDO DESPLEGABLE --- */
 .acordeon-content {
-    max-height: 0; /* Oculto por defecto */
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-    background-color: #FAFAFA; /* Un gris muuuy clarito para diferenciarlo del encabezado */
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease-in-out; background-color: #FAFAFA;
 }
-
 .content-interno {
-    padding: 30px;
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
+    padding: 30px; display: flex; gap: 40px; align-items: flex-start;
     border-top: 1px solid #eee;
 }
+.texto-contenido { flex: 1; text-align: left; }
+.texto-contenido h4 { color: var(--text-dark); font-size: 1.5rem; margin-top: 0; margin-bottom: 15px; }
+.texto-contenido p { color: #555; line-height: 1.6; margin: 0; }
 
-.texto-contenido {
-    flex: 1;
-    text-align: left;
-}
-
-.texto-contenido h4 {
-    color: var(--text-dark);
-    font-size: 1.5rem;
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-.texto-contenido p {
-    color: #555;
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Espacio para el ejemplo a la derecha */
-.imagen-ejemplo {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Estilo para las imágenes dentro del acordeón */
+.imagen-ejemplo { flex: 1; display: flex; justify-content: center; align-items: center; }
 .img-acordeon {
-    width: 100%; /* Hace que la imagen ocupe todo el espacio disponible en la columna derecha */
-    max-width: 450px; /* Evita que la imagen se haga gigante en pantallas muy grandes */
-    height: auto;
-    border-radius: 8px; /* Bordes redondeados para que combine con tus tarjetas */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Una sombra suave para darle volumen */
+    width: 100%; max-width: 450px; height: auto;
+    border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* --- CLASES ACTIVAS (Cuando se le da clic) --- */
-.acordeon-item.activo {
-    /* La línea amarilla se hace más gruesa al estar activo */
-    border-left: 12px solid var(--accent-yellow); 
-}
+.acordeon-item.activo { border-left: 12px solid var(--accent-yellow); }
+.acordeon-item.activo .icono-flecha { transform: rotate(180deg); }
 
-.acordeon-item.activo .icono-flecha {
-    transform: rotate(180deg); /* Gira la flecha hacia arriba */
-}
-
-/* Adaptación a celulares */
-@media (max-width: 768px) {
-    .content-interno {
-        flex-direction: column; /* Apila el texto y la imagen en celulares */
-        gap: 20px;
-    }
-}
-/* --- PRECIOS (Estilo Claro y Profesional) --- */
-/* --- SECCIÓN DE PLANES CON ESTILO CÓSMICO --- */
+/* =========================================
+   6. PLANES Y PRECIOS
+   ========================================= */
 #planes {
-    /* Fondo morado con estrellas como en tu inicio */
     background-color: #804d85; 
     background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px);
     background-size: 30px 30px; 
-    background-position: 0 0;
     padding: 5rem 5%;
     max-width: 100%; 
     margin: 0;
+    text-align: center;
 }
 
 #planes h2 {
-    color: white; /* Título en blanco para que resalte sobre el morado */
+    font-size: 2.5rem; color: white;
+    margin-bottom: 3rem; text-transform: uppercase; font-weight: 800;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
 }
 
 .pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem; max-width: 1200px; margin: 0 auto;
 }
 
-/* Tarjetas flotantes estilo 3D */
 .price-card {
-    background: var(--bg-white);
-    border: none; /* Adiós al borde gris aburrido */
-    border-radius: 15px; /* Bordes más redondeados */
-    padding: 3rem 2rem;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25); /* Sombra para que floten sobre el fondo */
+    background: var(--bg-white); border-radius: 15px;
+    padding: 3rem 2rem; text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative; display: flex; flex-direction: column; align-items: center;
 }
+.price-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
 
-/* Efecto al pasar el mouse (se elevan hacia ti) */
-.price-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-}
+.price-card h3 { color: var(--text-dark); font-size: 1.8rem; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 800; }
+.price { font-size: 3rem; font-weight: 900; color: var(--text-dark); margin: 1rem 0 1.5rem 0; }
+.price span { font-size: 1.1rem; color: #777; font-weight: 400; }
+.price .precio-valor { font-size: 3rem; font-weight: 900; color: var(--text-dark); }
+.price-card p { color: #555; margin-bottom: 1rem; }
 
-.price-card h3 {
-    color: var(--text-dark);
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-    font-weight: 800;
-}
-
-.price {
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--text-dark); 
-    margin: 1rem 0 1.5rem 0;
-}
-
-.price span {
-    font-size: 1.1rem;
-    color: #777;
-    font-weight: 400;
-}
-/* Corrección: El número del precio vuelve a ser grande y morado */
-.price .precio-valor {
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--text-dark); 
-}
-
-.price-card p {
-    color: #555;
-    margin-bottom: 1rem;
-}
-
-/* --- ETIQUETA DE MESES SIN INTERESES (MSI) --- */
 .msi-badge {
-    background-color: rgba(0, 158, 227, 0.1); /* Fondo azul muy clarito estilo Mercado Pago */
-    color: #009ee3; /* Azul fuerte original de Mercado Pago para el texto */
-    padding: 8px 16px;
-    border-radius: 20px; /* Forma de píldora redondeada */
-    font-size: 0.95rem;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px; /* Separación entre el icono de la tarjeta y el texto */
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(0, 158, 227, 0.3); /* Borde sutil azul */
-    transition: transform 0.2s ease;
+    background-color: rgba(0, 158, 227, 0.1); color: #009ee3;
+    padding: 8px 16px; border-radius: 20px; font-size: 0.95rem; font-weight: 700;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    margin-bottom: 1.5rem; border: 1px solid rgba(0, 158, 227, 0.3); transition: transform 0.2s ease;
 }
+.msi-badge:hover { transform: scale(1.05); background-color: rgba(0, 158, 227, 0.15); }
 
-/* Pequeño efecto al pasar el mouse por encima */
-.msi-badge:hover {
-    transform: scale(1.05);
-    background-color: rgba(0, 158, 227, 0.15);
-}
-
-/* Tarjeta destacada (Astronauta+) */
-.price-card.featured {
-    border: 4px solid var(--accent-yellow);
-    transform: scale(1.05); /* La hace un poco más grande por defecto */
-}
-
-.price-card.featured:hover {
-    transform: scale(1.05) translateY(-10px);
-}
+.price-card.featured { border: 4px solid var(--accent-yellow); transform: scale(1.05); }
+.price-card.featured:hover { transform: scale(1.05) translateY(-10px); }
 
 .featured-label {
-    background: var(--accent-yellow);
-    color: var(--text-dark);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 8px;
-    font-weight: 800;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 10px 10px 0 0;
+    background: var(--accent-yellow); color: var(--text-dark);
+    position: absolute; top: 0; left: 0; right: 0; padding: 8px;
+    font-weight: 800; font-size: 0.9rem; text-transform: uppercase;
+    letter-spacing: 1px; border-radius: 10px 10px 0 0;
 }
-/* --- ICONOS 3D DE LOS PLANES --- */
+
 .icono-plan {
-    width: 140px; /* Ajusta el tamaño general de la imagen */
-    height: 140px; 
-    object-fit: contain; /* Evita que la imagen se deforme o se estire */
-    margin-bottom: 1.5rem; /* Da espacio entre el icono y el título del plan */
-    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2)); /* Crea una sombra en la forma de la imagen para que resalte más */
-    transition: transform 0.4s ease; /* Transición suave para la animación */
-}
-
-/* Efecto mágico: Cuando pasas el mouse por la tarjeta, el icono crece y "flota" un poco más arriba */
-.price-card:hover .icono-plan {
-    transform: scale(1.1) translateY(-10px);
-}
-
-/* Ajuste de margen superior para la tarjeta destacada para que el icono no choque con la etiqueta amarilla */
-.price-card.featured .icono-plan {
-    margin-top: 1rem;
-}
-
-/* Ajuste fino para el botón dentro de las tarjetas */
-.price-card .btn-primario {
-    margin-top: auto; /* Empuja el botón siempre hacia abajo */
-    width: 80%;
-}
-/* --- CAJAS DE BENEFICIOS DESTACADOS --- */
-.beneficio-destacado {
-    font-size: 1.05rem;
-    font-weight: 600; /* Hace la letra más gordita y legible */
-    color: var(--text-dark);
-    background-color: rgba(114, 191, 68, 0.1); /* Un fondo verde súper clarito */
-    padding: 12px 15px;
-    border-radius: 8px; /* Bordes redondeados */
-    margin: 15px auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 10px; /* Separación entre el icono y el texto */
-    text-align: left;
-    border: 1px solid rgba(114, 191, 68, 0.3); /* Borde verde sutil */
-    max-width: 90%;
-}
-
-/* El icono de la palomita verde */
-.beneficio-destacado i {
-    color: var(--color-btn); /* Tu verde brillante */
-    font-size: 1.2rem;
-    margin-top: 3px;
-}
-
-/* --- ESTILO ESPECIAL PARA EL REGALO --- */
-.beneficio-destacado.regalo {
-    background-color: rgba(255, 193, 7, 0.15); /* Fondo amarillito */
-    border: 1px solid rgba(255, 193, 7, 0.5); /* Borde amarillo */
-}
-
-/* El icono de cajita de regalo */
-.beneficio-destacado.regalo i {
-    color: #d9a400; /* Un amarillo más oscuro/dorado para que resalte */
-}
-
-/* --- INTERRUPTOR DE MONEDA (MXN / USD) --- */
-.currency-toggle-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-}
-
-.currency-toggle {
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.1); /* Fondo cristalino */
-    border-radius: 30px; /* Forma de píldora */
-    padding: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.toggle-btn {
-    background: transparent;
-    border: none;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* Cuando el botón está seleccionado (Color Amarillo) */
-.toggle-btn.active {
-    background-color: var(--accent-yellow);
-    color: var(--text-dark);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-/* --- ICONOS 3D DE LOS PLANES --- */
-.icono-plan {
-    width: 140px; 
-    height: 140px; 
-    object-fit: contain; 
-    margin-bottom: 1.5rem; 
-    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.15)); 
+    width: 140px; height: 140px; object-fit: contain; 
+    margin-bottom: 1.5rem; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.15)); 
     transition: transform 0.4s ease; 
 }
+.price-card:hover .icono-plan { transform: scale(1.1) translateY(-10px); }
+.price-card.featured .icono-plan { margin-top: 1rem; }
+.price-card .btn-primario { margin-top: auto; width: 80%; }
 
-.price-card:hover .icono-plan {
-    transform: scale(1.1) translateY(-10px);
+.beneficio-destacado {
+    font-size: 1.05rem; font-weight: 600; color: var(--text-dark);
+    background-color: rgba(114, 191, 68, 0.1); padding: 12px 15px; border-radius: 8px;
+    margin: 15px auto; display: flex; align-items: flex-start; justify-content: center; gap: 10px;
+    text-align: left; border: 1px solid rgba(114, 191, 68, 0.3); max-width: 90%;
 }
+.beneficio-destacado i { color: var(--color-btn); font-size: 1.2rem; margin-top: 3px; }
+.beneficio-destacado.regalo { background-color: rgba(255, 193, 7, 0.15); border: 1px solid rgba(255, 193, 7, 0.5); }
+.beneficio-destacado.regalo i { color: #d9a400; }
 
-.price-card.featured .icono-plan {
-    margin-top: 1rem;
-}
-
-/* --- INTERRUPTOR DE MONEDA (MXN / USD) --- */
-.currency-toggle-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-}
-
+.currency-toggle-container { display: flex; justify-content: center; margin-bottom: 3rem; }
 .currency-toggle {
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.1); 
-    border-radius: 30px; 
-    padding: 5px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex; background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 30px; padding: 5px; border: 1px solid rgba(255, 255, 255, 0.3);
 }
-
 .toggle-btn {
-    background: transparent;
-    border: none;
-    color: white;
-    padding: 10px 30px;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    background: transparent; border: none; color: white; padding: 10px 30px;
+    border-radius: 25px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;
 }
+.toggle-btn.active { background-color: var(--accent-yellow); color: var(--text-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
 
-.toggle-btn.active {
-    background-color: var(--accent-yellow);
-    color: var(--text-dark);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-
-/* --- PIE DE PÁGINA (FOOTER) --- */
-footer {
-    background-color: var(--bg-header); /* Morado original */
-    color: rgba(255, 255, 255, 0.7);
-    text-align: center;
-    padding: 3rem 5%;
-}
-
-/* --- BOTÓN DE WHATSAPP FLOTANTE --- */
-.wsp-floating-container {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.wsp-text-bubble {
-    background-color: white;
-    color: var(--text-dark);
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 25px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    position: relative;
-}
-
-.wsp-text-bubble::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -10px;
-    transform: translateY(-50%);
-    border-width: 10px 0 10px 10px;
-    border-style: solid;
-    border-color: transparent transparent transparent white;
-}
-
-.wsp-icon-circle {
-    width: 60px;
-    height: 60px;
-    background-color: #25D366; /* Verde oficial de WhatsApp */
-    border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.2s;
-}
-
-.wsp-icon-circle:hover {
-    transform: scale(1.1);
-}
-
-.wsp-icon-circle svg {
-    fill: white;
-    width: 35px;
-    height: 35px;
-}
-
-/* --- SECCIÓN CONTACTO --- */
+/* =========================================
+   7. SECCIÓN CONTACTO Y MODAL
+   ========================================= */
 .contacto-section {
-    background-color: var(--bg-header); /* Tu morado oscuro */
-    color: white;
-    position: relative;
-    overflow: hidden; /* Evita que las formas de fondo se salgan */
-    padding: 6rem 5%;
-    margin: 0;
-    max-width: 100%;
+    background-color: var(--bg-header); color: white;
+    position: relative; overflow: hidden; 
+    padding: 6rem 5%; margin: 0; max-width: 100%; min-height: 80vh; display: flex; align-items: center;
 }
-
-/* 1. Formas decorativas de fondo (Ondas abstractas) */
 .contacto-section::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: -10%;
-    width: 600px;
-    height: 600px;
-    background-color: rgba(255, 255, 255, 0.03); /* Mancha muy sutil */
-    border-radius: 50%;
-    z-index: 0;
+    content: ''; position: absolute; top: -20%; left: -10%;
+    width: 600px; height: 600px; background-color: rgba(255, 255, 255, 0.03); border-radius: 50%; z-index: 0;
 }
-
 .contacto-section::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    right: -10%;
-    width: 800px;
-    height: 800px;
-    background-color: rgba(255, 255, 255, 0.04);
-    /* Forma orgánica "blob" para imitar tus curvas */
-    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; 
-    z-index: 0;
+    content: ''; position: absolute; bottom: -30%; right: -10%;
+    width: 800px; height: 800px; background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; z-index: 0;
 }
 
-.contacto-container {
-    position: relative;
-    z-index: 2; /* Protege el contenido de los fondos */
-    max-width: 1000px;
-    margin: 0 auto;
-}
+.contacto-container { position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; width: 100%; }
+.contacto-header { text-align: center; margin-bottom: 4rem; }
+.contacto-header h2 { color: white; font-size: 2.2rem; font-weight: 700; margin: 0; }
 
-/* 2. Encabezado */
-.contacto-header {
-    text-align: center;
-    margin-bottom: 4rem;
+.contacto-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contacto-form { display: flex; flex-direction: column; gap: 15px; }
+.contacto-form input, .contacto-form textarea {
+    width: 100%; padding: 15px; border: none; border-radius: 0px; font-size: 1rem;
+    font-family: inherit; background-color: white; color: var(--text-main); box-sizing: border-box; 
 }
+.contacto-form input::placeholder, .contacto-form textarea::placeholder { color: #888; }
+.contacto-form textarea { resize: vertical; }
+.contacto-form .btn-primario { align-self: flex-start; border: none; cursor: pointer; padding: 12px 30px; border-radius: 8px; }
 
-.contacto-header h2 {
+.contacto-info { display: flex; flex-direction: column; gap: 2.5rem; text-align: center; }
+.info-item h4, .social-links-container h4 { color: white; font-size: 1.1rem; margin: 0 0 10px 0; font-weight: 700; }
+.info-item a { color: var(--color-btn); font-size: 1.3rem; text-decoration: none; font-weight: 600; transition: color 0.3s; }
+.info-item a:hover { color: white; }
+
+.social-icons { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.social-icon {
+    display: flex; justify-content: center; align-items: center;
+    width: 38px; height: 38px; background-color: white; border-radius: 50%;
+    text-decoration: none; color: var(--bg-header); font-size: 1.3rem; transition: transform 0.3s, background-color 0.3s;
+}
+.social-icon:hover { transform: scale(1.1); background-color: var(--color-btn); color: white; }
+
+/* Modal Éxito */
+.modal-exito {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(91, 19, 104, 0.8); display: flex; justify-content: center; align-items: center;
+    z-index: 99999; opacity: 1; transition: opacity 0.4s ease;
+}
+.modal-exito.oculto { opacity: 0; pointer-events: none; }
+.modal-contenido {
+    background-color: white; padding: 40px 30px; border-radius: 20px; text-align: center;
+    max-width: 400px; width: 90%; box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    transform: translateY(0) scale(1); transition: transform 0.4s ease;
+}
+.modal-exito.oculto .modal-contenido { transform: translateY(30px) scale(0.95); }
+.modal-contenido i { font-size: 4.5rem; color: var(--color-btn); margin-bottom: 20px; }
+.modal-contenido h3 { color: var(--text-dark); margin-top: 0; margin-bottom: 10px; font-size: 2rem; font-weight: 800; }
+.modal-contenido p { color: #555; font-size: 1.1rem; margin-bottom: 30px; }
+.modal-contenido .btn-primario { width: 100%; }
+
+/* =========================================
+   8. WIDGET CHAT DE WHATSAPP
+   ========================================= */
+.wa-widget-container {
+    position: fixed; bottom: 25px; right: 25px; z-index: 10000;
+    display: flex; flex-direction: column; align-items: flex-end;
+}
+.wa-floating-btn {
+    width: 60px; height: 60px; background-color: #25D366; color: white; border-radius: 50%;
+    display: flex; justify-content: center; align-items: center; font-size: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.3s ease;
+}
+.wa-floating-btn:hover { transform: scale(1.1); }
+
+.wa-chat-box {
+    width: 350px; background-color: white; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    overflow: hidden; margin-bottom: 15px; transform-origin: bottom right; transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.wa-chat-box.oculto { transform: scale(0); opacity: 0; pointer-events: none; }
+
+.wa-header { background-color: #075e54; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+.wa-header-izq { display: flex; align-items: center; gap: 15px; }
+.wa-header-izq i { font-size: 1.8rem; }
+.wa-header-izq strong { font-size: 1.1rem; display: block; }
+.wa-header-izq p { margin: 0; font-size: 0.8rem; opacity: 0.8; }
+#wa-close { cursor: pointer; font-size: 1.2rem; padding: 5px; }
+
+.wa-chat-body { background-color: #ece5dd; padding: 20px; min-height: 250px; }
+.wa-message-bubble {
+    background-color: white; padding: 12px 15px; border-radius: 0 15px 15px 15px; font-size: 0.95rem;
+    color: #333; display: inline-block; max-width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,0.1); position: relative;
+}
+.wa-time { display: block; font-size: 0.7rem; color: #999; text-align: right; margin-top: 5px; }
+
+.wa-chat-footer { display: flex; padding: 10px; background-color: #f0f0f0; gap: 10px; }
+#wa-message-input { flex-grow: 1; padding: 12px 15px; border: none; border-radius: 25px; outline: none; font-family: inherit; }
+#wa-send-btn { background-color: transparent; border: none; color: #075e54; font-size: 1.5rem; cursor: pointer; transition: transform 0.2s; }
+#wa-send-btn:hover { transform: scale(1.1); }
+
+/* =========================================
+   9. PÁGINA: NOSOTROS (Símbolos Neón y Valores)
+   ========================================= */
+body.fondo-estrellas {
+    background-color: var(--bg-header);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1.5px, transparent 1.5px);
+    background-size: 30px 30px;
     color: white;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin: 0;
-    text-transform: none; /* Amigable, sin todo mayúsculas */
-    letter-spacing: normal;
 }
 
-.contacto-grid {
+.simbolos-flotantes {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    pointer-events: none; 
+    z-index: -1; 
+    overflow: hidden;
+}
+.simbolo { position: absolute; font-family: 'Arial', sans-serif; font-weight: 900; opacity: 0.8; }
+
+.s1 { top: 15%; left: 10%; font-size: 5.5rem; color: #00e5ff; text-shadow: 0 0 20px rgba(0, 229, 255, 0.6); animation: flotar-lento 8s infinite ease-in-out alternate; }
+.s2 { top: 30%; right: 12%; font-size: 7rem; color: #ff00ff; text-shadow: 0 0 20px rgba(255, 0, 255, 0.6); animation: flotar-amplio 12s infinite ease-in-out alternate-reverse; }
+.s3 { top: 60%; left: 15%; font-size: 4.5rem; color: var(--color-btn); text-shadow: 0 0 15px var(--color-btn); animation: flotar-rapido 5s infinite ease-in-out alternate; }
+.s4 { bottom: 20%; right: 20%; font-size: 6rem; color: var(--accent-yellow); text-shadow: 0 0 15px var(--accent-yellow); animation: flotar-lento 9s infinite ease-in-out alternate-reverse; }
+.s5 { top: 45%; left: 45%; font-size: 3rem; color: #ff00ff; opacity: 0.3; animation: flotar-rapido 7s infinite linear alternate; }
+.s6 { bottom: 10%; left: 30%; font-size: 4rem; color: #00e5ff; opacity: 0.5; animation: flotar-amplio 14s infinite ease-in-out alternate; }
+.s7 { top: 75%; right: 8%; font-size: 5rem; color: rgba(255, 255, 255, 0.4); animation: flotar-lento 11s infinite ease-in-out alternate-reverse; }
+.s8 { top: 10%; left: 60%; font-size: 3.5rem; color: var(--color-btn); opacity: 0.4; animation: flotar-rapido 6s infinite ease-in-out alternate; }
+.s9 { top: 50%; right: 5%; font-size: 6.5rem; color: #00e5ff; text-shadow: 0 0 25px rgba(0, 229, 255, 0.5); animation: flotar-lento 10s infinite ease-in-out alternate; }
+.s10 { bottom: 5%; left: 50%; font-size: 4.5rem; color: #ff00ff; opacity: 0.6; animation: flotar-amplio 13s infinite ease-in-out alternate-reverse; }
+
+@keyframes flotar-lento { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(-50px) rotate(15deg); } }
+@keyframes flotar-amplio { 0% { transform: translate(0, 0) rotate(0deg) scale(1); } 100% { transform: translate(-30px, -80px) rotate(-20deg) scale(1.1); } }
+@keyframes flotar-rapido { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(-20px) rotate(10deg); } }
+
+.nosotros-section { max-width: 1100px; margin: 0 auto; padding: 4rem 5%; position: relative; z-index: 2; }
+.titulo-estrellas { text-align: center; font-size: 3.5rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: 2px; }
+.subtitulo-verde { text-align: center; color: var(--color-btn); font-size: 2rem; margin-bottom: 1.5rem; font-weight: 700; }
+.verde-brillante { color: var(--color-btn); font-size: 1.8rem; margin-bottom: 15px; }
+.intro-texto { text-align: center; max-width: 800px; margin: 0 auto 4rem auto; font-size: 1.1rem; line-height: 1.8; }
+
+.niveles-bloque { display: flex; align-items: center; gap: 40px; margin-bottom: 6rem; text-align: center; flex-direction: column; }
+.niveles-bloque p { line-height: 1.8; font-size: 1.05rem; }
+.niveles-img { width: 100%; max-width: 800px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+
+.mv-grid { display: flex; flex-direction: column; gap: 5rem; margin-bottom: 6rem; }
+.mv-item { display: flex; align-items: center; gap: 40px; }
+.mv-item.invertido { flex-direction: row-reverse; }
+.mv-img { width: 100%; max-width: 400px; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+.mv-texto p { font-size: 1.1rem; line-height: 1.8; }
+
+.valores-header { text-align: center; max-width: 800px; margin: 0 auto 4rem auto; }
+.valores-header p { font-size: 1.1rem; line-height: 1.8; }
+.valores-lista { display: flex; flex-direction: column; gap: 30px; }
+.valor-item {
+    display: grid; grid-template-columns: 1fr 2.5fr; gap: 30px; align-items: center;
+    background-color: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; border-left: 5px solid var(--color-btn);
+}
+.titulo-valor { font-size: 2rem; margin: 0; text-align: right; font-weight: 700; }
+.valor-item p { margin: 0; line-height: 1.7; font-size: 1.05rem; }
+
+/* =========================================
+   10. FOOTER MODERNO
+   ========================================= */
+.footer-moderno {
+    background-color: var(--bg-header); /* Morado original */
+    color: white;
+    padding: 3rem 5%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
-/* 3. Estilos del Formulario */
-.contacto-form {
+.footer-links {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
+    text-align: left;
 }
 
-.contacto-form input,
-.contacto-form textarea {
-    width: 100%;
-    padding: 15px;
-    border: none;
-    border-radius: 0px; /* Cuadrados como en tu diseño */
-    font-size: 1rem;
-    font-family: inherit;
-    background-color: white;
-    color: var(--text-main);
-    box-sizing: border-box; 
-}
-
-.contacto-form input::placeholder,
-.contacto-form textarea::placeholder {
-    color: #888;
-}
-
-.contacto-form textarea {
-    resize: vertical;
-}
-
-.contacto-form .btn-primario {
-    align-self: flex-start; 
-    border: none;
-    cursor: pointer;
-    font-size: 1.1rem;
-    padding: 12px 30px;
-    border-radius: 8px; /* Botón ligeramente redondeado */
-}
-
-/* 4. Información de la derecha */
-.contacto-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-    text-align: center; 
-}
-
-.info-item h4, .social-links-container h4 {
+.footer-links a {
     color: white;
-    font-size: 1.1rem;
-    margin: 0 0 10px 0;
-    font-weight: 700;
-}
-
-/* Textos verdes */
-.info-item a {
-    color: var(--color-btn); /* Tu verde característico */
-    font-size: 1.3rem;
     text-decoration: none;
+    font-size: 1rem;
     font-weight: 600;
     transition: color 0.3s;
 }
 
-.info-item a:hover {
-    color: white;
+.footer-links a:hover {
+    color: var(--accent-yellow);
 }
 
-/* 5. Redes Sociales */
-.social-icons {
-    display: flex;
-    flex-direction: column; /* Apilados verticalmente */
-    align-items: center;
-    gap: 12px;
-}
-
-.social-icon {
+.footer-logo {
     display: flex;
     justify-content: center;
-    align-items: center;
-    width: 38px;
-    height: 38px;
-    background-color: white; 
-    border-radius: 50%;
-    text-decoration: none;
-    color: var(--bg-header); /* Icono color morado */
-    font-size: 1.3rem;
-    transition: transform 0.3s, background-color 0.3s;
 }
 
-.social-icon:hover {
+.footer-logo img {
+    height: 80px; /* Tamaño del logo en el pie */
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.footer-logo img:hover {
     transform: scale(1.1);
-    background-color: var(--color-btn); /* Se pintan de verde */
-    color: white;
 }
 
-/* 6. Adaptación para celulares */
+.footer-copyright {
+    text-align: right;
+}
+
+.footer-copyright p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Adaptación para celulares */
 @media (max-width: 768px) {
-    .contacto-grid {
-        grid-template-columns: 1fr; /* Una sola columna en celulares */
-        gap: 3rem;
+    .footer-moderno {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
     }
     
-    .social-icons {
-        flex-direction: row; /* En celulares los ponemos en fila horizontal */
-        justify-content: center;
-        flex-wrap: wrap;
+    .footer-links {
+        align-items: center;
+        text-align: center;
     }
-    
-    .contacto-form .btn-primario {
-        align-self: center; /* Botón centrado en móvil */
-        width: 100%;
+
+    .footer-copyright {
+        text-align: center;
     }
 }
 
-/* --- AJUSTES PARA CELULARES (RESPONSIVE) --- */
-/* --- AJUSTES PARA CELULARES Y PANTALLAS VERTICALES --- */
-/* --- AJUSTES PARA CELULARES, TABLETS Y PANTALLAS DIVIDIDAS --- */
+/* =========================================
+   11. ADAPTACIÓN PARA MÓVILES (MEDIA QUERIES)
+   ========================================= */
 @media (max-width: 1100px) {
-    .hero-fotografico {
-        justify-content: center;
-        text-align: center;
-    }
-    
-    .hero-contenido {
-        margin-left: 0;
-        text-align: center;
-    }
-
-    .hero-contenido h1 {
-        font-size: 2.5rem;
-    }
-
+    .hero-fotografico { justify-content: center; text-align: center; }
+    .hero-contenido { margin-left: 0; text-align: center; }
+    .hero-contenido h1 { font-size: 2.5rem; }
     .video-lateral {
-        width: 100%;
-        max-width: 100%; 
-        height: 100%; 
-        top: 0; 
-        left: 0;
-        
-        /* 👇 Agregamos esto para "borrar" las posiciones anteriores 👇 */
-        bottom: auto; 
-        right: auto; 
-        
-        object-fit: cover; 
-        opacity: 0.35; 
-        
-        -webkit-mask-image: none;
-        mask-image: none;
+        width: 100%; height: 100%; top: 0; left: 0; bottom: auto; right: auto;
+        object-fit: cover; opacity: 0.35; -webkit-mask-image: none; mask-image: none;
     }
 }
-/* --- AJUSTES DE METODOLOGÍA PARA TABLETAS Y CELULARES --- */
 
-/* Para pantallas medianas (Tabletas y laptops pequeñas) */
 @media (max-width: 1024px) {
-    #metodologia .grid {
-        grid-template-columns: repeat(2, 1fr); /* Cambia a 2 tarjetas por fila */
-        gap: 30px;
-    }
+    .contacto-grid { gap: 2rem; }
 }
 
-/* Para pantallas pequeñas (Teléfonos celulares) */
 @media (max-width: 768px) {
-    #metodologia .grid {
-        grid-template-columns: repeat(1, 1fr); /* Cambia a 1 sola tarjeta por fila (apiladas) */
-        gap: 30px; /* Da un poco de respiro entre cada tarjeta */
-    }
-    
-    /* Un pequeño ajuste para que las tarjetas no toquen las orillas del teléfono */
-    .card {
-        padding: 2rem 1.5rem;
-    }
-}
-/* Asegura que la sección ocupe al menos el alto de la pantalla */
-.contacto-section {
-    min-height: 80vh; 
-    display: flex;
-    align-items: center;
-}
-/* --- ADAPTACIÓN PARA CELULARES (Pantallas menores a 768px) --- */
-@media (max-width: 768px) {
-    
-    /* 1. Ocultar los enlaces de texto */
-    /* --- CONFIGURACIÓN DEL MENÚ DESPLEGABLE MÓVIL --- */
+    /* Menú Hamburguesa */
     .header-dark .nav-links {
-        display: none; /* Sigue oculto por defecto */
-        flex-direction: column; /* Apila los enlaces uno sobre otro */
-        position: absolute;
-        top: 100%; /* Lo pone justo debajo de la barra morada */
-        left: 0;
-        width: 100%;
-        background-color: var(--bg-header); /* Usa tu color morado */
-        padding: 20px 0;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.3); /* Sombrita para que resalte */
-        z-index: 999;
+        display: none; flex-direction: column; position: absolute; top: 100%; left: 0;
+        width: 100%; background-color: var(--bg-header); padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.3); z-index: 999;
     }
+    .header-dark .nav-links.activo { display: flex; }
+    .header-dark .nav-links a { padding: 15px; width: 100%; text-align: center; display: block; }
+    .menu-icon { display: block; }
+    .header-dark .logo img { max-height: 60px; }
 
-    /* Esta es la clase "mágica" que JavaScript va a prender y apagar */
-    .header-dark .nav-links.activo {
-        display: flex; 
-    }
+    /* Hero */
+    .hero-contenido h1 { font-size: 2.2rem; word-wrap: break-word; }
+    .hero-fotografico { padding-top: 2rem; }
 
-    /* Hacemos los botones más grandes para que sea fácil tocarlos con el dedo */
-    .header-dark .nav-links a {
-        padding: 15px;
-        width: 100%;
-        text-align: center;
-        display: block;
+    /* Contacto */
+    .contacto-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .social-icons { flex-direction: row; justify-content: center; flex-wrap: wrap; }
+    .contacto-form .btn-primario { align-self: center; width: 100%; }
+
+    /* Nosotros */
+    .simbolo { transform: scale(0.5) !important; }
+    .titulo-estrellas { font-size: 2.5rem; }
+    .subtitulo-verde { font-size: 1.5rem; }
+    .mv-item, .mv-item.invertido { flex-direction: column; text-align: center; }
+    .valor-item { grid-template-columns: 1fr; text-align: center; border-left: none; border-top: 5px solid var(--color-btn); }
+    .titulo-valor { text-align: center; }
+}
+
+@media (max-width: 400px) {
+    .wa-chat-box { width: 300px; }
+}
+/* =========================================
+   12. PÁGINAS LEGALES (Términos y Privacidad)
+   ========================================= */
+.legal-section {
+    background-color: var(--bg-body); /* Fondo gris muy clarito */
+    padding: 4rem 5%;
+    min-height: 80vh;
+}
+
+.legal-container {
+    max-width: 900px; /* Ancho cómodo para leer */
+    margin: 0 auto;
+    background-color: white;
+    padding: 3rem 4rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* Sombrita elegante */
+}
+
+.legal-container h1 {
+    color: var(--text-dark); /* Morado Sapienty */
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-align: center;
+    border-bottom: 3px solid var(--color-btn); /* Línea verde debajo del título principal */
+    padding-bottom: 1rem;
+}
+
+.legal-container h2 {
+    color: var(--text-dark);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.legal-container p {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+}
+
+.legal-container ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.legal-container li {
+    color: #444;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+}
+
+.legal-container strong {
+    color: var(--text-dark); /* Las palabras clave resaltan sutilmente en morado */
+}
+
+/* Adaptación para celulares de los textos legales */
+@media (max-width: 768px) {
+    .legal-container {
+        padding: 2rem;
     }
     
-    /* 2. Mostrar el icono de las 3 rayitas */
-    .menu-icon {
-        display: block; 
-        font-size: 1.8rem;
-        color: white;
-        cursor: pointer;
+    .legal-container h1 {
+        font-size: 2rem;
     }
     
-    /* 3. Ajustar el tamaño del logo para que no quite tanto espacio */
-    .header-dark .logo img {
-        max-height: 60px; 
-    }
-
-    /* 4. Ajustar el texto gigante de bienvenida para que quepa bien */
-    .hero-contenido h1 {
-        font-size: 2.2rem;
-        word-wrap: break-word; /* Obliga a las palabras muy largas a saltar de línea */
-    }
-    
-    .hero-fotografico {
-        padding-top: 2rem; /* Le da un respiro arriba */
+    .legal-container h2 {
+        font-size: 1.4rem;
     }
 }
