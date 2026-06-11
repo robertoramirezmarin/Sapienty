@@ -132,7 +132,98 @@
             </div>
         </div>
     </section>
-  
+    <section id="profesores" class="section profesores-section">
+        <h2>Nuestros Profesores</h2>
+        <p class="profesores-sub">Cercanos y capacitados. Nuestros profesores son aliados estratégicos la formación de sus hijos.</p>
+        
+        <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" aria-label="Anterior"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn" aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button>
+            
+            <div class="carousel-track-container">
+                <div class="carousel-track">
+                    
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrapper">
+                            <img src="SAPI-0001.Foto.060758.jpg" alt="Profesor. Omar">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Profesor Omar</h3>
+                            <p class="teacher-role">Director Ejecutivo</p>
+                            <a href="contacto.html" class="btn-perfil">Ver perfil</a>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrapper">
+                            <img src="SAPI-0002.Foto.004744.jpg" alt="Dr. Amilcar">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Dr. Amilcar</h3>
+                            <p class="teacher-role">Director Financiero</p>
+                            <a href="contacto.html" class="btn-perfil">Ver perfil</a>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrapper">
+                            <img src="SAPI-0003.Foto.055724.jpg" alt="Administradora. Izebel">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Administradora Izebel</h3>
+                            <p class="teacher-role">Directora Administrativa</p>
+                            <a href="contacto.html" class="btn-perfil">Ver perfil</a>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrapper">
+                            <img src="SAPI-0004.Foto.060350.jpg" alt="Profesor David">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Profesor David</h3>
+                            <p class="teacher-role">Director de Recursos Humanos</p>
+                            <a href="contacto.html" class="btn-perfil">Ver perfil</a>
+                        </div>
+                    </div>
+                    
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrapper">
+                            <img src="SAPI-0005.Foto.060411.jpg" alt="Profesor Alberto">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Profesor Alberto</h3>
+                            <p class="teacher-role">Gerente de Calidad Educativa</p>
+                            <a href="contacto.html" class="btn-perfil">Ver perfil</a>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrapper">
+                            <img src="SAPI-0006.CV.060525.jpg" alt="Profesor Germán">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Profesor Germán</h3>
+                            <p class="teacher-role">Director Comercial</p>
+                            <a href="contacto.html" class="btn-perfil">Ver perfil</a>
+                        </div>
+                    </div>
+
+                    <div class="teacher-card">
+                        <div class="teacher-img-wrapper">
+                            <img src="SAPI-0007.Foto.060428.jpg" alt="Profesor Roberto">
+                        </div>
+                        <div class="teacher-info">
+                            <h3 class="teacher-name">Profesor Roberto</h3>
+                            <p class="teacher-role">Director Técnologico</p>
+                            <a href="contacto.html" class="btn-perfil">Ver perfil</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
     <footer class="footer-moderno">
         <div class="footer-links">
             <a href="terminos.html">Términos y condiciones</a>
@@ -261,6 +352,53 @@
                     enviarMensaje();
                 }
             });
+        });
+        // Script del Carrusel de Profesores
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const nextBtn = document.querySelector('.next-btn');
+            const prevBtn = document.querySelector('.prev-btn');
+            const cards = document.querySelectorAll('.teacher-card');
+            
+            if (!track || !nextBtn || !prevBtn || cards.length === 0) return;
+
+            let currentIndex = 0;
+
+            function getCardsPerView() {
+                if (window.innerWidth <= 480) return 1;
+                if (window.innerWidth <= 768) return 2;
+                if (window.innerWidth <= 1024) return 3;
+                return 4; // Por defecto 4 en escritorio
+            }
+
+            function updateCarousel() {
+                const cardsPerView = getCardsPerView();
+                const maxIndex = cards.length - cardsPerView;
+                
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                if (currentIndex < 0) currentIndex = 0;
+
+                // Ancho de la tarjeta + gap (20px de espacio entre ellas)
+                const cardWidth = cards[0].getBoundingClientRect().width + 20;
+                track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < cards.length - getCardsPerView()) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+
+            // Reajusta el carrusel si el usuario voltea el celular o cambia el tamaño de la ventana
+            window.addEventListener('resize', updateCarousel);
         });
     </script>
 </body>
