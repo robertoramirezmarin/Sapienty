@@ -18,7 +18,8 @@
 }
 
 html, body {
-    overflow-x: hidden;
+    overflow-x: hidden; /* respaldo para navegadores antiguos */
+    overflow-x: clip;   /* evita scroll horizontal sin romper el header "sticky" */
     width: 100%;
     margin: 0;
     padding: 0;
@@ -26,6 +27,13 @@ html, body {
     color: var(--text-main);
     background-color: var(--bg-body);
     line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Respuesta táctil inmediata y sin el destello azul/gris al tocar */
+a, button, [role="button"] {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* Botón Verde General */
@@ -42,10 +50,6 @@ html, body {
     transition: background-color 0.3s, transform 0.2s;
 }
 
-.btn-primario:hover {
-    background-color: var(--color-btn-hover);
-    transform: translateY(-2px);
-}
 
 /* =========================================
    2. PANTALLA DE INTRODUCCIÓN (SPLASH)
@@ -92,7 +96,6 @@ body.bloquear-scroll { overflow: hidden; }
     width: auto;      
     transition: transform 0.3s ease;
 }
-.header-dark .logo img:hover { transform: scale(1.05); }
 
 .header-dark .nav-links { display: flex; gap: 30px; }
 .header-dark .nav-links a {
@@ -104,10 +107,11 @@ body.bloquear-scroll { overflow: hidden; }
     letter-spacing: 0.5px;
     transition: color 0.3s;
 }
-.header-dark .nav-links a:hover { color: var(--accent-yellow); }
 
 .menu-icon {
-    color: white; font-size: 1.8rem; cursor: pointer; display: none; 
+    color: white; font-size: 1.8rem; cursor: pointer; display: none;
+    background: none; border: none; padding: 0;
+    width: 48px; height: 48px; line-height: 48px; text-align: center;
 }
 
 /* =========================================
@@ -242,7 +246,7 @@ body.bloquear-scroll { overflow: hidden; }
     padding: 20px 30px; cursor: pointer;
     background-color: white; transition: background-color 0.3s ease;
 }
-.acordeon-header:hover { background-color: #f9f9f9; }
+.acordeon-header:focus-visible { outline: 3px solid var(--accent-yellow); outline-offset: -3px; }
 
 .header-izq { display: flex; align-items: center; gap: 20px; }
 .header-izq i { font-size: 1.5rem; color: var(--text-dark); }
@@ -299,7 +303,7 @@ body.bloquear-scroll { overflow: hidden; }
 }
 
 .pricing-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 2.5rem; max-width: 1200px; margin: 0 auto;
 }
 
@@ -310,7 +314,6 @@ body.bloquear-scroll { overflow: hidden; }
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative; display: flex; flex-direction: column; align-items: center;
 }
-.price-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
 
 .price-card h3 { color: var(--text-dark); font-size: 1.8rem; text-transform: uppercase; margin-bottom: 0.5rem; font-weight: 800; }
 .price { font-size: 3rem; font-weight: 900; color: var(--text-dark); margin: 1rem 0 1.5rem 0; }
@@ -324,10 +327,8 @@ body.bloquear-scroll { overflow: hidden; }
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
     margin-bottom: 1.5rem; border: 1px solid rgba(0, 158, 227, 0.3); transition: transform 0.2s ease;
 }
-.msi-badge:hover { transform: scale(1.05); background-color: rgba(0, 158, 227, 0.15); }
 
 .price-card.featured { border: 4px solid var(--accent-yellow); transform: scale(1.05); }
-.price-card.featured:hover { transform: scale(1.05) translateY(-10px); }
 
 .featured-label {
     background: var(--accent-yellow); color: var(--text-dark);
@@ -341,7 +342,6 @@ body.bloquear-scroll { overflow: hidden; }
     margin-bottom: 1.5rem; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.15)); 
     transition: transform 0.4s ease; 
 }
-.price-card:hover .icono-plan { transform: scale(1.1) translateY(-10px); }
 .price-card.featured .icono-plan { margin-top: 1rem; }
 .price-card .btn-primario { margin-top: auto; width: 80%; }
 
@@ -401,7 +401,6 @@ body.bloquear-scroll { overflow: hidden; }
 .contacto-info { display: flex; flex-direction: column; gap: 2.5rem; text-align: center; }
 .info-item h4, .social-links-container h4 { color: white; font-size: 1.1rem; margin: 0 0 10px 0; font-weight: 700; }
 .info-item a { color: var(--color-btn); font-size: 1.3rem; text-decoration: none; font-weight: 600; transition: color 0.3s; }
-.info-item a:hover { color: white; }
 
 .social-icons { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .social-icon {
@@ -409,7 +408,6 @@ body.bloquear-scroll { overflow: hidden; }
     width: 38px; height: 38px; background-color: white; border-radius: 50%;
     text-decoration: none; color: var(--bg-header); font-size: 1.3rem; transition: transform 0.3s, background-color 0.3s;
 }
-.social-icon:hover { transform: scale(1.1); background-color: var(--color-btn); color: white; }
 
 /* Modal Éxito */
 .modal-exito {
@@ -435,26 +433,29 @@ body.bloquear-scroll { overflow: hidden; }
 .wa-widget-container {
     position: fixed; bottom: 25px; right: 25px; z-index: 10000;
     display: flex; flex-direction: column; align-items: flex-end;
+    /* El contenedor mide lo mismo que el chat aunque esté oculto: sin esto
+       atrapa los toques de todo lo que hay debajo (botones, links, acordeón...) */
+    pointer-events: none;
 }
+.wa-widget-container > * { pointer-events: auto; }
 .wa-floating-btn {
-    width: 60px; height: 60px; background-color: #25D366; color: white; border-radius: 50%;
+    width: 60px; height: 60px; background-color: #25D366; color: white; border-radius: 50%; border: none; padding: 0;
     display: flex; justify-content: center; align-items: center; font-size: 2rem;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.3s ease;
 }
-.wa-floating-btn:hover { transform: scale(1.1); }
 
 .wa-chat-box {
-    width: 350px; background-color: white; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    width: 350px; max-width: calc(100vw - 30px); background-color: white; border-radius: 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     overflow: hidden; margin-bottom: 15px; transform-origin: bottom right; transition: transform 0.3s ease, opacity 0.3s ease;
 }
-.wa-chat-box.oculto { transform: scale(0); opacity: 0; pointer-events: none; }
+.wa-chat-box.oculto { transform: scale(0); opacity: 0; visibility: hidden; pointer-events: none; transition: transform 0.3s ease, opacity 0.3s ease, visibility 0s linear 0.3s; }
 
 .wa-header { background-color: #075e54; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
 .wa-header-izq { display: flex; align-items: center; gap: 15px; }
 .wa-header-izq i { font-size: 1.8rem; }
 .wa-header-izq strong { font-size: 1.1rem; display: block; }
 .wa-header-izq p { margin: 0; font-size: 0.8rem; opacity: 0.8; }
-#wa-close { cursor: pointer; font-size: 1.2rem; padding: 5px; }
+#wa-close { cursor: pointer; font-size: 1.2rem; background: none; border: none; color: inherit; width: 44px; height: 44px; margin: -10px -10px -10px 0; }
 
 .wa-chat-body { background-color: #ece5dd; padding: 20px; min-height: 250px; }
 .wa-message-bubble {
@@ -464,9 +465,9 @@ body.bloquear-scroll { overflow: hidden; }
 .wa-time { display: block; font-size: 0.7rem; color: #999; text-align: right; margin-top: 5px; }
 
 .wa-chat-footer { display: flex; padding: 10px; background-color: #f0f0f0; gap: 10px; }
-#wa-message-input { flex-grow: 1; padding: 12px 15px; border: none; border-radius: 25px; outline: none; font-family: inherit; }
-#wa-send-btn { background-color: transparent; border: none; color: #075e54; font-size: 1.5rem; cursor: pointer; transition: transform 0.2s; }
-#wa-send-btn:hover { transform: scale(1.1); }
+/* font-size de 16px: con menos, el iPhone hace zoom al escribir */
+#wa-message-input { flex-grow: 1; min-width: 0; padding: 12px 15px; border: none; border-radius: 25px; outline: none; font-family: inherit; font-size: 16px; }
+#wa-send-btn { background-color: transparent; border: none; color: #075e54; font-size: 1.5rem; cursor: pointer; transition: transform 0.2s; min-width: 44px; min-height: 44px; }
 
 /* =========================================
    9. PÁGINA: NOSOTROS (Símbolos Neón y Valores)
@@ -560,9 +561,6 @@ body.fondo-estrellas {
     transition: color 0.3s;
 }
 
-.footer-links a:hover {
-    color: var(--accent-yellow);
-}
 
 .footer-logo {
     display: flex;
@@ -575,9 +573,6 @@ body.fondo-estrellas {
     transition: transform 0.3s ease;
 }
 
-.footer-logo img:hover {
-    transform: scale(1.1);
-}
 
 .footer-copyright {
     text-align: right;
@@ -634,7 +629,18 @@ body.fondo-estrellas {
     .header-dark .nav-links.activo { display: flex; }
     .header-dark .nav-links a { padding: 15px; width: 100%; text-align: center; display: block; }
     .menu-icon { display: block; }
-    .header-dark .logo img { max-height: 60px; }
+    .header-dark { padding: 0.5rem 5%; }
+    .header-dark .logo img { max-height: 56px; }
+
+    /* Acordeón: texto arriba, imagen abajo */
+    .content-interno { flex-direction: column; gap: 20px; padding: 20px; }
+    .acordeon-header { padding: 16px 18px; }
+    .header-izq { gap: 12px; }
+    .header-izq h3 { font-size: 1.1rem; }
+    #metodologia h2, #planes h2, .profesores-section h2 { font-size: 1.8rem; }
+
+    /* WhatsApp más cerca de la esquina */
+    .wa-widget-container { bottom: 15px; right: 15px; }
 
     /* Hero */
     .hero-contenido h1 { font-size: 2.2rem; word-wrap: break-word; }
@@ -656,6 +662,7 @@ body.fondo-estrellas {
 
 @media (max-width: 400px) {
     .wa-chat-box { width: 300px; }
+    .wa-chat-body { min-height: 160px; }
 }
 /* =========================================
    12. PÁGINAS LEGALES (Términos y Privacidad)
@@ -783,6 +790,7 @@ body.fondo-estrellas {
 
 .carousel-track {
     display: flex;
+    touch-action: pan-y; /* permite deslizar horizontalmente con el dedo */
     gap: 20px;
     transition: transform 0.4s ease-in-out;
 }
@@ -799,10 +807,6 @@ body.fondo-estrellas {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.teacher-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-}
 
 .teacher-img-wrapper {
     width: 100%;
@@ -858,10 +862,6 @@ body.fondo-estrellas {
     display: inline-block;
 }
 
-.btn-perfil:hover {
-    background-color: var(--accent-yellow);
-    transform: scale(1.05);
-}
 
 /* Botones de control del Carrusel */
 .carousel-btn {
@@ -883,10 +883,7 @@ body.fondo-estrellas {
     transition: all 0.3s ease;
 }
 
-.carousel-btn:hover {
-    background-color: var(--bg-header);
-    color: white;
-}
+.carousel-btn:disabled { opacity: 0.4; cursor: default; }
 
 .prev-btn { left: -10px; }
 .next-btn { right: -10px; }
@@ -899,7 +896,7 @@ body.fondo-estrellas {
 @media (max-width: 768px) {
     .teacher-card { min-width: calc(50% - 10px); } /* 2 tarjetas */
     .carousel-wrapper { padding: 0 30px; }
-    .carousel-btn { width: 35px; height: 35px; font-size: 1rem; }
+    .carousel-btn { width: 40px; height: 40px; font-size: 1rem; }
     .prev-btn { left: 0; }
     .next-btn { right: 0; }
 }
@@ -907,3 +904,44 @@ body.fondo-estrellas {
 @media (max-width: 480px) {
     .teacher-card { min-width: 100%; } /* 1 tarjeta */
 }
+
+/* =========================================
+   14. EFECTOS HOVER (solo con mouse)
+   En pantallas táctiles el :hover se queda "pegado" después de tocar,
+   así que estos efectos solo se aplican en dispositivos con puntero.
+   ========================================= */
+@media (hover: hover) and (pointer: fine) {
+    .btn-primario:hover {
+        background-color: var(--color-btn-hover);
+        transform: translateY(-2px);
+    }
+    .header-dark .logo img:hover { transform: scale(1.05); }
+    .header-dark .nav-links a:hover { color: var(--accent-yellow); }
+    .price-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+    .msi-badge:hover { transform: scale(1.05); background-color: rgba(0, 158, 227, 0.15); }
+    .price-card.featured:hover { transform: scale(1.05) translateY(-10px); }
+    .price-card:hover .icono-plan { transform: scale(1.1) translateY(-10px); }
+    .info-item a:hover { color: white; }
+    .social-icon:hover { transform: scale(1.1); background-color: var(--color-btn); color: white; }
+    .wa-floating-btn:hover { transform: scale(1.1); }
+    #wa-send-btn:hover { transform: scale(1.1); }
+    .footer-links a:hover {
+        color: var(--accent-yellow);
+    }
+    .footer-logo img:hover {
+        transform: scale(1.1);
+    }
+    .teacher-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    }
+    .btn-perfil:hover {
+        background-color: var(--accent-yellow);
+        transform: scale(1.05);
+    }
+    .acordeon-header:hover { background-color: #f9f9f9; }
+    .carousel-btn:not(:disabled):hover { background-color: var(--bg-header); color: white; }
+}
+
+/* Botón presionado: respuesta visual al tocar en celular */
+.btn-primario:active, .btn-perfil:active, .carousel-btn:active, .wa-floating-btn:active { transform: scale(0.97); }

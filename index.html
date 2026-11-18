@@ -22,16 +22,16 @@
             <a href="contacto.html">CONTACTO</a>
         </nav>
         
-        <div class="menu-icon">
+        <button type="button" class="menu-icon" aria-label="Abrir menú" aria-expanded="false">
             <i class="fas fa-bars"></i>
-        </div>
+        </button>
     </header>
 
     <section class="hero-fotografico">
         <div class="hero-contenido">
             <h1>¡Bienvenido a <span>Sapienty!</span></h1>
             <p>LA MEJOR ACADEMIA DE MATEMÁTICAS ONLINE</p>
-            <a href="#agenda" class="btn-primario">¡Agenda una clase GRATIS!</a>
+            <a href="https://wa.me/5215561301497?text=%C2%A1Hola!%20Quiero%20agendar%20mi%20clase%20GRATIS%20en%20Sapienty." class="btn-primario" target="_blank" rel="noopener">¡Agenda una clase GRATIS!</a>
         </div>
 
         <video class="video-lateral" autoplay loop muted playsinline>
@@ -50,7 +50,7 @@
         
         <div class="acordeon-container">
             <div class="acordeon-item">
-                <div class="acordeon-header">
+                <div class="acordeon-header" role="button" tabindex="0" aria-expanded="false">
                     <div class="header-izq">
                         <i class="fas fa-stairs"></i>
                         <h3>S. <span>Secuencial</span></h3>
@@ -71,7 +71,7 @@
             </div>
 
             <div class="acordeon-item">
-                <div class="acordeon-header">
+                <div class="acordeon-header" role="button" tabindex="0" aria-expanded="false">
                     <div class="header-izq">
                         <i class="fas fa-face-laugh-beam"></i>
                         <h3>A. <span>Alegre</span></h3>
@@ -92,7 +92,7 @@
             </div>
 
             <div class="acordeon-item">
-                <div class="acordeon-header">
+                <div class="acordeon-header" role="button" tabindex="0" aria-expanded="false">
                     <div class="header-izq">
                         <i class="fas fa-bullseye"></i>
                         <h3>P. <span>Práctico</span></h3>
@@ -113,7 +113,7 @@
             </div>
 
             <div class="acordeon-item">
-                <div class="acordeon-header">
+                <div class="acordeon-header" role="button" tabindex="0" aria-expanded="false">
                     <div class="header-izq">
                         <i class="fas fa-user-graduate"></i>
                         <h3>I. <span>Individual</span></h3>
@@ -251,103 +251,65 @@
                         <p>En línea</p>
                     </div>
                 </div>
-                <i class="fas fa-chevron-down" id="wa-close"></i>
+                <button type="button" id="wa-close" aria-label="Cerrar chat"><i class="fas fa-chevron-down"></i></button>
             </div>
-            
+
             <div class="wa-chat-body">
                 <div class="wa-message-bubble">
                     ¿En qué te puedo ayudar? :)
                     <span class="wa-time">Ahora</span>
                 </div>
             </div>
-            
-            <div class="wa-chat-footer">
-                <input type="text" id="wa-message-input" placeholder="Escribe tu mensaje..." autocomplete="off">
-                <button id="wa-send-btn"><i class="fas fa-paper-plane"></i></button>
-            </div>
+
+            <form class="wa-chat-footer" id="wa-form">
+                <input type="text" id="wa-message-input" placeholder="Escribe tu mensaje..." autocomplete="off" enterkeyhint="send" aria-label="Mensaje">
+                <button type="submit" id="wa-send-btn" aria-label="Enviar por WhatsApp"><i class="fas fa-paper-plane"></i></button>
+            </form>
         </div>
 
-        <div class="wa-floating-btn" id="wa-floating-btn">
+        <button type="button" class="wa-floating-btn" id="wa-floating-btn" aria-label="Abrir chat de WhatsApp" aria-expanded="false">
             <i class="fab fa-whatsapp"></i>
-        </div>
+        </button>
     </div>
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // --- Acordeón ---
-            const headers = document.querySelectorAll('.acordeon-header');
+            const items = document.querySelectorAll('.acordeon-item');
 
-            headers.forEach(header => {
-                header.addEventListener('click', function() {
-                    const item = this.parentElement;
-                    const content = this.nextElementSibling;
-
-                    if (item.classList.contains('activo')) {
-                        item.classList.remove('activo');
-                        content.style.maxHeight = null;
-                    } else {
-                        document.querySelectorAll('.acordeon-item.activo').forEach(activo => {
-                            activo.classList.remove('activo');
-                            activo.querySelector('.acordeon-content').style.maxHeight = null;
-                        });
-
-                        item.classList.add('activo');
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                });
-            });
-
-            // --- Menú Móvil ---
-            const menuIcon = document.querySelector('.menu-icon');
-            const navLinks = document.querySelector('.nav-links');
-
-            menuIcon.addEventListener('click', function() {
-                navLinks.classList.toggle('activo');
-            });
-
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('activo');
-                });
-            });
-
-            // --- Widget de WhatsApp ---
-            const waBtn = document.getElementById('wa-floating-btn');
-            const waChatBox = document.getElementById('wa-chat-box');
-            const waClose = document.getElementById('wa-close');
-            const waSendBtn = document.getElementById('wa-send-btn');
-            const waInput = document.getElementById('wa-message-input');
-
-            const numeroWhatsApp = "5215561301497";
-
-            waBtn.addEventListener('click', () => {
-                waChatBox.classList.remove('oculto');
-                waInput.focus();
-            });
-
-            waClose.addEventListener('click', () => {
-                waChatBox.classList.add('oculto');
-            });
-
-            function enviarMensaje() {
-                const mensaje = waInput.value.trim();
-                let url = `https://wa.me/${numeroWhatsApp}`;
-
-                if (mensaje !== "") {
-                    url += `?text=${encodeURIComponent(mensaje)}`;
-                }
-
-                window.open(url, '_blank', 'noopener');
-                waChatBox.classList.add('oculto');
-                waInput.value = "";
+            function ajustarAltura(item) {
+                const content = item.querySelector('.acordeon-content');
+                content.style.maxHeight = item.classList.contains('activo') ? content.scrollHeight + "px" : null;
             }
 
-            waSendBtn.addEventListener('click', enviarMensaje);
+            items.forEach(item => {
+                const header = item.querySelector('.acordeon-header');
+                const content = item.querySelector('.acordeon-content');
 
-            waInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    enviarMensaje();
-                }
+                // Las imágenes usan loading="lazy": al terminar de cargar cambian
+                // la altura del contenido, así que la recalculamos para no cortarlas.
+                content.querySelectorAll('img').forEach(img => img.addEventListener('load', () => ajustarAltura(item)));
+
+                header.addEventListener('click', function() {
+                    const abrir = !item.classList.contains('activo');
+
+                    items.forEach(otro => {
+                        otro.classList.remove('activo');
+                        otro.querySelector('.acordeon-header').setAttribute('aria-expanded', 'false');
+                        ajustarAltura(otro);
+                    });
+
+                    if (abrir) {
+                        item.classList.add('activo');
+                        header.setAttribute('aria-expanded', 'true');
+                        content.querySelectorAll('img').forEach(img => img.loading = 'eager');
+                        ajustarAltura(item);
+                    }
+                });
+
+                header.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); header.click(); }
+                });
             });
 
             // --- Carrusel de Profesores ---
@@ -368,34 +330,48 @@
             }
 
             function updateCarousel() {
-                const cardsPerView = getCardsPerView();
-                const maxIndex = cards.length - cardsPerView;
+                const maxIndex = cards.length - getCardsPerView();
 
                 if (currentIndex > maxIndex) currentIndex = maxIndex;
                 if (currentIndex < 0) currentIndex = 0;
 
-                // Ancho de la tarjeta + gap (20px de espacio entre ellas)
-                const cardWidth = cards[0].getBoundingClientRect().width + 20;
+                // Ancho de la tarjeta + el gap real del CSS
+                const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+                const cardWidth = cards[0].getBoundingClientRect().width + gap;
                 track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+                prevBtn.disabled = currentIndex === 0;
+                nextBtn.disabled = currentIndex >= maxIndex;
             }
 
-            nextBtn.addEventListener('click', () => {
-                if (currentIndex < cards.length - getCardsPerView()) {
-                    currentIndex++;
-                    updateCarousel();
-                }
-            });
+            function siguiente() { currentIndex++; updateCarousel(); }
+            function anterior() { currentIndex--; updateCarousel(); }
 
-            prevBtn.addEventListener('click', () => {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    updateCarousel();
+            nextBtn.addEventListener('click', siguiente);
+            prevBtn.addEventListener('click', anterior);
+
+            // Deslizar con el dedo en celulares
+            let inicioX = 0, inicioY = 0;
+            track.addEventListener('touchstart', e => {
+                inicioX = e.touches[0].clientX;
+                inicioY = e.touches[0].clientY;
+            }, { passive: true });
+            track.addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].clientX - inicioX;
+                const dy = e.changedTouches[0].clientY - inicioY;
+                if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+                    dx < 0 ? siguiente() : anterior();
                 }
-            });
+            }, { passive: true });
 
             // Reajusta el carrusel si el usuario voltea el celular o cambia el tamaño de la ventana
-            window.addEventListener('resize', updateCarousel);
+            window.addEventListener('resize', () => {
+                updateCarousel();
+                items.forEach(ajustarAltura);
+            });
+            updateCarousel();
         });
     </script>
+    <script src="main.js" defer></script>
 </body>
 </html>
