@@ -20,9 +20,9 @@
             <a href="contacto.html">CONTACTO</a>
         </nav>
         
-        <div class="menu-icon">
+        <button type="button" class="menu-icon" aria-label="Abrir menú" aria-expanded="false">
             <i class="fas fa-bars"></i>
-        </div>
+        </button>
     </header>
 
     <section id="planes" class="section">
@@ -45,7 +45,7 @@
                     <span class="precio-moneda" style="font-size: 1.1rem; color: #777;">MXN</span><span style="font-size: 1.1rem; color: #777;">/mes</span>
                 </div>
                 <p class="beneficio-destacado"><i class="fas fa-check-circle"></i> 2 Clases Semanales.</p>
-                <a href="#" class="btn-primario">Elegir Plan</a>
+                <a href="https://wa.me/5215561301497?text=%C2%A1Hola%21%20Me%20interesa%20el%20plan%20Astr%C3%B3nomo%20de%20Sapienty." class="btn-primario" target="_blank" rel="noopener">Elegir Plan</a>
             </div>
             
             <div class="price-card">
@@ -56,7 +56,7 @@
                     <span class="precio-moneda" style="font-size: 1.1rem; color: #777;">MXN</span><span style="font-size: 1.1rem; color: #777;">/mes</span>
                 </div>
                 <p class="beneficio-destacado"><i class="fas fa-check-circle"></i> 4 Clases Semanales.</p>
-                <a href="#" class="btn-primario">Elegir Plan</a>
+                <a href="https://wa.me/5215561301497?text=%C2%A1Hola%21%20Me%20interesa%20el%20plan%20Astronauta%20de%20Sapienty." class="btn-primario" target="_blank" rel="noopener">Elegir Plan</a>
             </div>
             
             <div class="price-card featured">
@@ -68,7 +68,7 @@
                 <div class="msi-badge">
                 <i class="fas fa-credit-card"></i> Paga hasta 6 MSI con Mercado Pago
                 </div>
-                <a href="#" class="btn-primario">Elegir Plan</a>
+                <a href="https://wa.me/5215561301497?text=%C2%A1Hola%21%20Me%20interesa%20el%20plan%20Astronauta%2B%20de%20Sapienty." class="btn-primario" target="_blank" rel="noopener">Elegir Plan</a>
             </div>
             
         </div>
@@ -99,25 +99,25 @@
                         <p>En línea</p>
                     </div>
                 </div>
-                <i class="fas fa-chevron-down" id="wa-close"></i>
+                <button type="button" id="wa-close" aria-label="Cerrar chat"><i class="fas fa-chevron-down"></i></button>
             </div>
-            
+
             <div class="wa-chat-body">
                 <div class="wa-message-bubble">
                     ¿En qué te puedo ayudar? :)
                     <span class="wa-time">Ahora</span>
                 </div>
             </div>
-            
-            <div class="wa-chat-footer">
-                <input type="text" id="wa-message-input" placeholder="Escribe tu mensaje..." autocomplete="off">
-                <button id="wa-send-btn"><i class="fas fa-paper-plane"></i></button>
-            </div>
+
+            <form class="wa-chat-footer" id="wa-form">
+                <input type="text" id="wa-message-input" placeholder="Escribe tu mensaje..." autocomplete="off" enterkeyhint="send" aria-label="Mensaje">
+                <button type="submit" id="wa-send-btn" aria-label="Enviar por WhatsApp"><i class="fas fa-paper-plane"></i></button>
+            </form>
         </div>
 
-        <div class="wa-floating-btn" id="wa-floating-btn">
+        <button type="button" class="wa-floating-btn" id="wa-floating-btn" aria-label="Abrir chat de WhatsApp" aria-expanded="false">
             <i class="fab fa-whatsapp"></i>
-        </div>
+        </button>
     </div>
 
     <script>
@@ -142,61 +142,7 @@
                 monedas.forEach(el => el.innerText = 'USD');
             });
         });
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const navLinks = document.querySelector('.nav-links');
-
-            menuIcon.addEventListener('click', function() {
-                navLinks.classList.toggle('activo');
-            });
-
-            const links = document.querySelectorAll('.nav-links a');
-            links.forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('activo');
-                });
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const waBtn = document.getElementById('wa-floating-btn');
-            const waChatBox = document.getElementById('wa-chat-box');
-            const waClose = document.getElementById('wa-close');
-            const waSendBtn = document.getElementById('wa-send-btn');
-            const waInput = document.getElementById('wa-message-input');
-            
-            const numeroWhatsApp = "5215561301497"; 
-
-            waBtn.addEventListener('click', () => {
-                waChatBox.classList.remove('oculto');
-                waInput.focus(); 
-            });
-
-            waClose.addEventListener('click', () => {
-                waChatBox.classList.add('oculto');
-            });
-
-            function enviarMensaje() {
-                const mensaje = waInput.value.trim();
-                let url = `https://wa.me/${numeroWhatsApp}`;
-                
-                if (mensaje !== "") {
-                    url += `?text=${encodeURIComponent(mensaje)}`;
-                }
-                
-                window.open(url, '_blank');
-                waChatBox.classList.add('oculto');
-                waInput.value = ""; 
-            }
-
-            waSendBtn.addEventListener('click', enviarMensaje);
-
-            waInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    enviarMensaje();
-                }
-            });
-        });
     </script>
+    <script src="main.js" defer></script>
 </body>
 </html>

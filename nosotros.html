@@ -18,9 +18,9 @@
             <a href="planes.html">PLANES</a>
             <a href="contacto.html">CONTACTO</a>
         </nav>
-        <div class="menu-icon">
+        <button type="button" class="menu-icon" aria-label="Abrir menú" aria-expanded="false">
             <i class="fas fa-bars"></i>
-        </div>
+        </button>
     </header>
 
     <main>
@@ -119,16 +119,6 @@
             <p>&copy; 2026 Sapienty</p>
         </div>
     </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuIcon = document.querySelector('.menu-icon');
-            const navLinks = document.querySelector('.nav-links');
-
-            menuIcon.addEventListener('click', function() {
-                navLinks.classList.toggle('activo');
-            });
-        });
-    </script>
+    <script src="main.js" defer></script>
 </body>
 </html>
